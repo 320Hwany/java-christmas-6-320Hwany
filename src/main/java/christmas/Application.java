@@ -1,7 +1,12 @@
 package christmas;
 
+import christmas.view.MessagePrinter;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        MessagePrinter messagePrinter = new MessagePrinter();
+        EventManager eventManager = new EventManager(messagePrinter);
+        eventManager.manageEvent();
     }
 }
