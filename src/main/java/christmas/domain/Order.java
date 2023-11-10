@@ -91,4 +91,8 @@ public final class Order {
     public List<Menu> getMenus() {
         return Collections.unmodifiableList(menus);
     }
+
+    public int getExpectedVisitDate() {
+        return expectedVisitDate;
+    }
 }
