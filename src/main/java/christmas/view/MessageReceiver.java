@@ -21,16 +21,13 @@ public class MessageReceiver {
     public int receiveExpectedVisitDate() {
         System.out.println(EXPECTED_VISIT_DATE.message);
         String inputText = Console.readLine();
-        int expectedVisitDate = viewValidator.parseInt(inputText);
-        viewValidator.validateExpectedDate(expectedVisitDate);
-
-        return expectedVisitDate;
+        return viewValidator.parseInt(inputText);
     }
 
-    public Order receiveOrder() {
+    public Order receiveOrder(final int expectedVisitDate) {
         System.out.println(ORDER_INFO.message);
         String inputText = Console.readLine();
         List<String> orderInfo = Arrays.asList(inputText.split(","));
-        return viewValidator.validateOrderInfo(orderInfo);
+        return viewValidator.validateOrderInfo(orderInfo, expectedVisitDate);
     }
 }

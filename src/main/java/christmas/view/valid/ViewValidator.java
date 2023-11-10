@@ -17,13 +17,7 @@ public class ViewValidator {
         }
     }
 
-    public void validateExpectedDate(final int expectedVisitDate) {
-        if (expectedVisitDate < 1 || expectedVisitDate > 31) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public Order validateOrderInfo(final List<String> orderInfo) {
+    public Order validateOrderInfo(final List<String> orderInfo, final int expectedVisitDate) {
         List<Menu> menus = new ArrayList<>();
 
         for (String menuText : orderInfo) {
@@ -34,6 +28,6 @@ public class ViewValidator {
             menus.add(menu);
         }
 
-        return new Order(menus);
+        return new Order(menus, expectedVisitDate);
     }
 }

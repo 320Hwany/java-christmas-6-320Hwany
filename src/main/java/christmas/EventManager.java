@@ -23,7 +23,7 @@ public class EventManager {
     private Order receiveVisitInfo() {
         messagePrinter.printGreetingMessage();
         int expectedVisitDate = messageReceiver.receiveExpectedVisitDate();
-        return messageReceiver.receiveOrder();
+        return messageReceiver.receiveOrder(expectedVisitDate);
     }
 
     private void processingOrder(final Order order) {
