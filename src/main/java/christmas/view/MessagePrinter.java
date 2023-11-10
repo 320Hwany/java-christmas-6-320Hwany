@@ -2,7 +2,6 @@ package christmas.view;
 
 import christmas.domain.Menu;
 import christmas.domain.Order;
-import christmas.domain.discount.DiscountManager;
 import christmas.domain.discount.DiscountPrice;
 
 import java.text.DecimalFormat;
@@ -39,10 +38,17 @@ public class MessagePrinter {
         System.out.println(giveaway);
     }
 
-    public void printBenefitResult(final DiscountManager discountManager, final Order order) {
+    public void printBenefitResult(final DiscountPrice discountPrice) {
         System.out.println(BENEFIT_RESULT.message);
-        DiscountPrice discountPrice = discountManager.calculateDiscountPrice(order);
         String benefitResultText = discountPrice.createBenefitResultText();
         System.out.println(benefitResultText);
+    }
+
+    public void printTotalDiscountPrice(final DiscountPrice discountPrice) {
+        System.out.println(TOTAL_DISCOUNT_PRICE.message);
+        int totalDiscountPrice = discountPrice.calculateTotalDiscountPrice();
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String formattedTotalDiscountPrice = decimalFormat.format(totalDiscountPrice);
+        System.out.println(formattedTotalDiscountPrice + "원");
     }
 }

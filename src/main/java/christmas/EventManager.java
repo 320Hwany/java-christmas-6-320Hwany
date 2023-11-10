@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.domain.discount.DiscountManager;
+import christmas.domain.discount.DiscountPrice;
 import christmas.domain.discount.policy.ChristmasDiscountPolicy;
 import christmas.domain.Order;
 import christmas.domain.discount.policy.SpecialDiscountPolicy;
@@ -49,6 +50,8 @@ public class EventManager {
     }
 
     private void processEventResult(final DiscountManager discountManager, final Order order) {
-        messagePrinter.printBenefitResult(discountManager, order);
+        DiscountPrice discountPrice = discountManager.calculateDiscountPrice(order);
+        messagePrinter.printBenefitResult(discountPrice);
+        messagePrinter.printTotalDiscountPrice(discountPrice);
     }
 }
