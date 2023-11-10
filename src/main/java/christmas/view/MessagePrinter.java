@@ -16,7 +16,9 @@ public class MessagePrinter {
     }
 
     public void printOrderingMenus(final Order order) {
-        System.out.println(ORDER_EVENT_PREVIEW.message);
+        int expectedVisitDate = order.getExpectedVisitDate();
+        String formattedMessage = String.format(ORDER_EVENT_PREVIEW.message, expectedVisitDate);
+        System.out.println(formattedMessage);
         System.out.println(ORDER_MENU.message);
         List<Menu> menus = order.getMenus();
         for (Menu menu : menus) {
