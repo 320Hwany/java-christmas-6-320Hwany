@@ -3,10 +3,10 @@ package christmas.view;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
-import static christmas.constant.MessageConstant.EVENT_PLANNER_GREETING;
-import static christmas.constant.MessageConstant.ORDER_MENU;
+import static christmas.constant.MessageConstant.*;
 
 public class MessagePrinter {
 
@@ -15,10 +15,18 @@ public class MessagePrinter {
     }
 
     public void printOrderingMenus(final Order order) {
+        System.out.println(ORDER_EVENT_PREVIEW.message);
         System.out.println(ORDER_MENU.message);
         List<Menu> menus = order.getMenus();
         for (Menu menu : menus) {
             System.out.println(menu.getMenuName() + " " + menu.getQuantity() + "개");
         }
+    }
+
+    public void printOrderTotalPrice(final int totalPrice) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String formattedTotalPrice = decimalFormat.format(totalPrice);
+        System.out.println(TOTAL_PRICE_BEFORE_DISCOUNT.message);
+        System.out.println(formattedTotalPrice + "원");
     }
 }
