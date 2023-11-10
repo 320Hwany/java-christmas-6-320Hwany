@@ -15,12 +15,17 @@ public class EventManager {
     }
 
     public void manageEvent() {
-        receiveVisitInfo();
+        Order order = receiveVisitInfo();
+        processingOrder(order);
     }
 
-    private void receiveVisitInfo() {
+    private Order receiveVisitInfo() {
         messagePrinter.printGreetingMessage();
         int expectedVisitDate = messageReceiver.receiveExpectedVisitDate();
-        Order order = messageReceiver.receiveOrder();
+        return messageReceiver.receiveOrder();
+    }
+
+    private void processingOrder(final Order order) {
+        messagePrinter.printOrderingMenus(order);
     }
 }

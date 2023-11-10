@@ -60,4 +60,9 @@ public final class Order {
 
         return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
+
+    // getter
+    public List<Menu> getMenus() {
+        return menus;
+    }
 }
