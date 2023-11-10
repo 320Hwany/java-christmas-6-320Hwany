@@ -46,4 +46,8 @@ public record DiscountPrice(
 
         return stringBuilder.toString();
     }
+
+    public int calculateTotalDiscount() {
+        return christmasDiscount + weekdayDiscount + weekendDiscount + specialDiscount + giveawayPrice;
+    }
 }
