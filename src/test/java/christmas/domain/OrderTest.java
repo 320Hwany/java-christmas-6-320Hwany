@@ -23,4 +23,19 @@ class OrderTest {
         assertThatThrownBy(() -> new Order(menus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("주문한 메뉴에 중복된 메뉴가 있으면 예외가 발생한다.")
+    @Test
+    void validateDuplication() {
+        // given
+        String menuName1 = "양송이수프";
+        String menuName2 = "양송이수프";
+        Menu menu1 = Menu.createMenu(menuName1, 10);
+        Menu menu2 = Menu.createMenu(menuName2, 5);
+        List<Menu> menus = List.of(menu1, menu2);
+
+        // expected
+        assertThatThrownBy(() -> new Order(menus))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
