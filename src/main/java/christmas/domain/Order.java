@@ -11,6 +11,7 @@ public final class Order {
     public Order(final List<Menu> menus) {
         validateMenusQuantity(menus);
         validateDuplication(menus);
+        validateOnlyBeverage(menus);
         this.menus = menus;
     }
 
@@ -35,5 +36,28 @@ public final class Order {
         if (distinctMenuName.size() != menus.size()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateOnlyBeverage(final List<Menu> menus) {
+        boolean isOnlyBeverageMenu = true;
+
+        for (Menu menu : menus) {
+            MenuInfo menuInfo = menu.getMenuInfo();
+            if (isNotBeverageMenu(menuInfo)) {
+                isOnlyBeverageMenu = false;
+            }
+        }
+
+        if (isOnlyBeverageMenu) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isNotBeverageMenu(final MenuInfo menuInfo) {
+        boolean isBeverage1 = menuInfo.equals(MenuInfo.BEVERAGE_1);
+        boolean isBeverage2 = menuInfo.equals(MenuInfo.BEVERAGE_2);
+        boolean isBeverage3 = menuInfo.equals(MenuInfo.BEVERAGE_3);
+
+        return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
 }

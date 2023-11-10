@@ -23,6 +23,10 @@ public final class Menu {
     }
 
     // getter
+    public MenuInfo getMenuInfo() {
+        return menuInfo;
+    }
+
     public String getMenuName() {
         return menuInfo.menuName;
     }
