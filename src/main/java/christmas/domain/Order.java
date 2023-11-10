@@ -62,8 +62,7 @@ public final class Order {
         return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
 
-    public boolean isGiveaway() {
-        int totalPrice = calculateTotalPrice();
+    public boolean isGiveaway(final int totalPrice) {
         return totalPrice >= 120000;
     }
 

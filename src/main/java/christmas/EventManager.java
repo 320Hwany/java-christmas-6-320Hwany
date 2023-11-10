@@ -33,6 +33,7 @@ public class EventManager {
     }
 
     private void applyEvent(final Order order) {
-        boolean isGiveaway = order.isGiveaway();
+        int totalPrice = order.calculateTotalPrice();
+        boolean isGiveaway = order.isGiveaway(totalPrice);
     }
 }
