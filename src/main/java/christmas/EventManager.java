@@ -54,5 +54,6 @@ public class EventManager {
         messagePrinter.printBenefitResult(discountPrice);
         messagePrinter.printTotalDiscountPrice(discountPrice);
         messagePrinter.printTotalPriceAfterDiscount(discountPrice, order);
+        messagePrinter.printEventBadge(discountPrice);
     }
 }

@@ -68,16 +68,19 @@ public class MessagePrinter {
     public void printEventBadge(final DiscountPrice discountPrice) {
         int totalBenefitPrice = discountPrice.calculateTotalBenefitPrice();
         String badge = "없음";
-        if (totalBenefitPrice >= 5000) {
+        if (totalBenefitPrice <= -5000) {
             badge = "별";
         }
 
-        if (totalBenefitPrice >= 10000) {
+        if (totalBenefitPrice <= -10000) {
             badge = "트리";
         }
 
-        if (totalBenefitPrice >= 20000) {
+        if (totalBenefitPrice <= -20000) {
             badge = "산타";
         }
+
+        System.out.println(EVENT_BADGE.message);
+        System.out.println(badge);
     }
 }
