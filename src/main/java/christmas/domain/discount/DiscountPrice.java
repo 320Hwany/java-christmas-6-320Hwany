@@ -47,7 +47,11 @@ public record DiscountPrice(
         return stringBuilder.toString();
     }
 
-    public int calculateTotalDiscountPrice() {
+    public int calculateTotalBenefitPrice() {
         return christmasDiscount + weekdayDiscount + weekendDiscount + specialDiscount + giveawayPrice;
+    }
+
+    public int calculateTotalDiscountPrice() {
+        return christmasDiscount + weekdayDiscount + weekendDiscount + specialDiscount;
     }
 }

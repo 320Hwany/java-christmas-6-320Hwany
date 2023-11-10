@@ -15,7 +15,8 @@ public enum MessageConstant {
     WEEKEND_DISCOUNT("주말 할인: "),
     SPECIAL_DISCOUNT("특별 할인: "),
     GIVEAWAY_EVENT("증정 이벤트: "),
-    TOTAL_DISCOUNT_PRICE("<총혜택 금액>");
+    TOTAL_DISCOUNT_PRICE("<총혜택 금액>"),
+    TOTAL_PRICE_AFTER_DISCOUNT("\n<할인 후 예상 결제 금액>");
 
     public final String message;
 
