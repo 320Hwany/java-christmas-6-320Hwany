@@ -6,7 +6,7 @@ import christmas.domain.Order;
 
 import java.util.List;
 
-import static christmas.constant.NumberConstant.*;
+import static christmas.constant.DaysConstant.*;
 
 public class WeekdayDiscount implements Discount {
 
@@ -28,7 +28,7 @@ public class WeekdayDiscount implements Discount {
     }
 
     private boolean isWeekday(final int expectedVisitDate) {
-        int day = expectedVisitDate % SEVEN_DAYS.number;
-        return !(day == FRIDAY.number || day == SATURDAY.number);
+        int day = expectedVisitDate % SEVEN_DAYS.value;
+        return !(day == FRIDAY.value || day == SATURDAY.value);
     }
 }

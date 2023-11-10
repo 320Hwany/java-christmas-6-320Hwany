@@ -30,4 +30,24 @@ class ChristmasDiscountTest {
         // then
         assertThat(discountPrice).isEqualTo(-1900);
     }
+
+    @DisplayName("크리스마스가 지나면 디데이 할인은 적용되지 않는다.")
+    @Test
+    void applyDiscountLimit() {
+        // given
+        String menuName1 = "양송이수프";
+        String menuName2 = "초코케이크";
+        Menu menu1 = Menu.createMenu(menuName1, 5);
+        Menu menu2 = Menu.createMenu(menuName2, 5);
+        List<Menu> menus = List.of(menu1, menu2);
+        Order order = new Order(menus, 26);
+
+        ChristmasDiscount christmasDiscount = new ChristmasDiscount();
+
+        // when
+        int discountPrice = christmasDiscount.applyDiscount(order);
+
+        // then
+        assertThat(discountPrice).isEqualTo(0);
+    }
 }

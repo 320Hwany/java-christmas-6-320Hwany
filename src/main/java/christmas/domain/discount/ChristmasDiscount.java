@@ -2,14 +2,20 @@ package christmas.domain.discount;
 
 import christmas.domain.Order;
 
+import static christmas.constant.DaysConstant.*;
+import static christmas.constant.PriceConstant.*;
+
 public class ChristmasDiscount implements Discount {
 
     @Override
     public int applyDiscount(final Order order) {
-        int basicChristmasDiscount = -1000;
+        int basicChristmasDiscount = CHRISTMAS_BASIC_DISCOUNT.price;
         int expectedVisitDate = order.getExpectedVisitDate();
-        int discountDay = Math.min(expectedVisitDate, 25);
+        if (expectedVisitDate > CHRISTMAS.value) {
+            return ZERO_DISCOUNT.price;
+        }
 
-        return basicChristmasDiscount - (100 * (discountDay - 1));
+        int christmasDayDiscount = CHRISTMAS_DISCOUNT_UNIT.price * (expectedVisitDate - 1);
+        return basicChristmasDiscount - christmasDayDiscount;
     }
 }
