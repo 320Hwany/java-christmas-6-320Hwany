@@ -3,6 +3,8 @@ package christmas;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
 
+import java.util.List;
+
 public class EventManager {
 
     private final MessagePrinter messagePrinter;
@@ -20,5 +22,6 @@ public class EventManager {
     private void receiveVisitInfo() {
         messagePrinter.printGreetingMessage();
         int expectedVisitDate = messageReceiver.receiveExpectedVisitDate();
+        List<String> orderingInfo = messageReceiver.receiveMenu();
     }
 }
