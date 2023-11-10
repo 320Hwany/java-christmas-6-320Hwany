@@ -25,9 +25,10 @@ public class MessageReceiver {
         return expectedVisitDate;
     }
 
-    public List<String> receiveMenu() {
-        System.out.println(ORDERING_INFO.message);
+    public void receiveOrder() {
+        System.out.println(ORDER_INFO.message);
         String inputText = Console.readLine();
-        return Arrays.asList(inputText.split(","));
+        List<String> orderInfo = Arrays.asList(inputText.split(","));
+        viewValidator.validateOrderInfo(orderInfo);
     }
 }
