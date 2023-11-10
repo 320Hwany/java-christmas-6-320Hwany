@@ -8,7 +8,13 @@ public enum MessageConstant {
     ORDER_EVENT_PREVIEW("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!"),
     ORDER_MENU("\n<주문 메뉴>"),
     TOTAL_PRICE_BEFORE_DISCOUNT("\n<할인 전 총주문 금액>"),
-    GIVE_AWAY_MENU("\n<증정 메뉴>");
+    GIVE_AWAY_MENU("\n<증정 메뉴>"),
+    BENEFIT_RESULT("\n<혜택 내역>"),
+    CHRISTMAS_DISCOUNT("크리스마스 디데이 할인: "),
+    WEEKDAY_DISCOUNT("평일 할인: "),
+    WEEKEND_DISCOUNT("주말 할인: "),
+    SPECIAL_DISCOUNT("특별 할인: "),
+    GIVEAWAY_EVENT("증정 이벤트: ");
 
     public final String message;
 

@@ -22,7 +22,8 @@ public class EventManager {
     public void manageEvent() {
         Order order = receiveVisitInfo();
         processingOrder(order);
-        applyEvent(order);
+        DiscountManager discountManager = applyEvent(order);
+        processEventResult(discountManager, order);
     }
 
     private Order receiveVisitInfo() {
@@ -37,14 +38,17 @@ public class EventManager {
         messagePrinter.printOrderTotalPrice(totalPrice);
     }
 
-    private void applyEvent(final Order order) {
+    private DiscountManager applyEvent(final Order order) {
         messagePrinter.printGiveaway(order);
         ChristmasDiscountPolicy christmasDiscount = new ChristmasDiscountPolicy();
         WeekdayDiscountPolicy weekdayDiscount = new WeekdayDiscountPolicy();
         WeekendDiscountPolicy weekendDiscount = new WeekendDiscountPolicy();
         SpecialDiscountPolicy specialDiscount = new SpecialDiscountPolicy();
-        DiscountManager discountManager =
-                new DiscountManager(christmasDiscount, weekdayDiscount, weekendDiscount, specialDiscount);
-        discountManager.applyDiscount(order);
+
+        return new DiscountManager(christmasDiscount, weekdayDiscount, weekendDiscount, specialDiscount);
+    }
+
+    private void processEventResult(final DiscountManager discountManager, final Order order) {
+        messagePrinter.printBenefitResult(discountManager, order);
     }
 }

@@ -2,6 +2,8 @@ package christmas.view;
 
 import christmas.domain.Menu;
 import christmas.domain.Order;
+import christmas.domain.discount.DiscountManager;
+import christmas.domain.discount.DiscountPrice;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -35,5 +37,12 @@ public class MessagePrinter {
         int totalPrice = order.calculateTotalPrice();
         String giveaway = order.checkGiveaway(totalPrice);
         System.out.println(giveaway);
+    }
+
+    public void printBenefitResult(final DiscountManager discountManager, final Order order) {
+        System.out.println(BENEFIT_RESULT.message);
+        DiscountPrice discountPrice = discountManager.calculateDiscountPrice(order);
+        String benefitResultText = discountPrice.createBenefitResultText();
+        System.out.println(benefitResultText);
     }
 }

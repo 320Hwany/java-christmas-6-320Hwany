@@ -23,10 +23,16 @@ public class DiscountManager {
         this.specialDiscountPolicy = specialDiscountPolicy;
     }
 
-    public void applyDiscount(final Order order) {
-        christmasDiscountPolicy.applyDiscount(order);
-        weekdayDiscountPolicy.applyDiscount(order);
-        weekendDiscountPolicy.applyDiscount(order);
-        specialDiscountPolicy.applyDiscount(order);
+    public DiscountPrice calculateDiscountPrice(final Order order) {
+        int christmasDiscount = christmasDiscountPolicy.applyDiscount(order);
+        int weekdayDiscount = weekdayDiscountPolicy.applyDiscount(order);
+        int weekendDiscount = weekendDiscountPolicy.applyDiscount(order);
+        int specialDiscount = specialDiscountPolicy.applyDiscount(order);
+        int giveawayPrice = 0;
+        if (order.calculateTotalPrice() > 120000) {
+            giveawayPrice = -25000;
+        }
+
+        return new DiscountPrice(christmasDiscount, weekdayDiscount, weekendDiscount, specialDiscount, giveawayPrice);
     }
 }
