@@ -2,6 +2,7 @@ package christmas;
 
 import christmas.domain.discount.ChristmasDiscount;
 import christmas.domain.Order;
+import christmas.domain.discount.SpecialDiscount;
 import christmas.domain.discount.WeekdayDiscount;
 import christmas.domain.discount.WeekendDiscount;
 import christmas.view.MessagePrinter;
@@ -40,8 +41,10 @@ public class EventManager {
         ChristmasDiscount christmasDiscount = new ChristmasDiscount();
         WeekdayDiscount weekdayDiscount = new WeekdayDiscount();
         WeekendDiscount weekendDiscount = new WeekendDiscount();
+        SpecialDiscount specialDiscount = new SpecialDiscount();
         int christmasDiscountPrice = christmasDiscount.applyDiscount(order);
         int weekdayDiscountPrice = weekdayDiscount.applyDiscount(order);
         int weekendDiscountPrice = weekendDiscount.applyDiscount(order);
+        int specialDiscountPrice = specialDiscount.applyDiscount(order);
     }
 }
