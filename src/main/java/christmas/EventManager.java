@@ -2,6 +2,7 @@ package christmas;
 
 import christmas.domain.discount.ChristmasDiscount;
 import christmas.domain.Order;
+import christmas.domain.discount.WeekdayDiscount;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
 
@@ -36,6 +37,8 @@ public class EventManager {
     private void applyEvent(final Order order) {
         messagePrinter.printGiveaway(order);
         ChristmasDiscount christmasDiscount = new ChristmasDiscount();
+        WeekdayDiscount weekdayDiscount = new WeekdayDiscount();
         int christmasDiscountPrice = christmasDiscount.applyDiscount(order);
+        int weekdayDiscountPrice = weekdayDiscount.applyDiscount(order);
     }
 }
