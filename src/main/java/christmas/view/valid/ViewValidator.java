@@ -1,9 +1,10 @@
 package christmas.view.valid;
 
-import java.util.Arrays;
+import christmas.domain.Menu;
+
+import java.util.ArrayList;
 import java.util.List;
 
-import static christmas.constant.MenuConstant.*;
 
 public class ViewValidator {
 
@@ -21,23 +22,17 @@ public class ViewValidator {
         }
     }
 
-    public void validateOrderInfo(final List<String> orderInfo) {
-        for (String menuInfo : orderInfo) {
-            List<String> menuAndQuantity = Arrays.asList(menuInfo.split("-"));
-            String menu = menuAndQuantity.get(0);
-            String quantity = menuAndQuantity.get(1);
-            validateMenuInfo(menu);
-        }
-    }
+    public List<Menu> validateOrderInfo(final List<String> orderInfo) {
+        List<Menu> menus = new ArrayList<>();
 
-    private void validateMenuInfo(final String menu) {
-        boolean isAppetizer = appetizer.contains(menu);
-        boolean isMain = main.contains(menu);
-        boolean isDessert = dessert.contains(menu);
-        boolean isBeverage = beverage.contains(menu);
-
-        if (!(isAppetizer || isMain || isDessert || isBeverage)) {
-            throw new IllegalArgumentException();
+        for (String menuText : orderInfo) {
+            String menuName = menuText.split("-")[0];
+            String quantityText = menuText.split("-")[1];
+            int quantity = parseInt(quantityText);
+            Menu menu = Menu.createMenu(menuName, quantity);
+            menus.add(menu);
         }
+
+        return menus;
     }
 }
