@@ -27,5 +27,6 @@ public class EventManager {
 
     private void processingOrder(final Order order) {
         messagePrinter.printOrderingMenus(order);
+        int totalPrice = order.calculateTotalPrice();
     }
 }

@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -61,8 +62,17 @@ public final class Order {
         return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
 
+    public int calculateTotalPrice() {
+        int totalPrice = 0;
+        for (Menu menu : menus) {
+            totalPrice += menu.calculatePrice();
+        }
+
+        return totalPrice;
+    }
+
     // getter
     public List<Menu> getMenus() {
-        return menus;
+        return Collections.unmodifiableList(menus);
     }
 }

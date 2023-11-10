@@ -22,6 +22,10 @@ public final class Menu {
         }
     }
 
+    public int calculatePrice() {
+        return menuInfo.price * quantity;
+    }
+
     // getter
     public MenuInfo getMenuInfo() {
         return menuInfo;
