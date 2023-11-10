@@ -29,4 +29,11 @@ public class MessagePrinter {
         System.out.println(TOTAL_PRICE_BEFORE_DISCOUNT.message);
         System.out.println(formattedTotalPrice + "원");
     }
+
+    public void printGiveaway(final Order order) {
+        System.out.println(GIVE_AWAY_MENU.message);
+        int totalPrice = order.calculateTotalPrice();
+        String giveaway = order.checkGiveaway(totalPrice);
+        System.out.println(giveaway);
+    }
 }

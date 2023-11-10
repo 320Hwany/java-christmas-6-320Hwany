@@ -34,6 +34,6 @@ public class EventManager {
 
     private void applyEvent(final Order order) {
         int totalPrice = order.calculateTotalPrice();
-        boolean isGiveaway = order.isGiveaway(totalPrice);
+        messagePrinter.printGiveaway(order);
     }
 }

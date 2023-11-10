@@ -62,8 +62,11 @@ public final class Order {
         return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
 
-    public boolean isGiveaway(final int totalPrice) {
-        return totalPrice >= 120000;
+    public String checkGiveaway(final int totalPrice) {
+        if (totalPrice >= 120000) {
+            return "샴페인 1개";
+        }
+        return "없음";
     }
 
     public int calculateTotalPrice() {
