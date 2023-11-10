@@ -53,4 +53,22 @@ class OrderTest {
         assertThatThrownBy(() -> new Order(menus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("할인 전 총 주문 금액을 계산한다.")
+    @Test
+    void calculateTotalPrice() {
+        // given
+        String menuName1 = "양송이수프";
+        String menuName2 = "초코케이크";
+        Menu menu1 = Menu.createMenu(menuName1, 3);
+        Menu menu2 = Menu.createMenu(menuName2, 5);
+        List<Menu> menus = List.of(menu1, menu2);
+        Order order = new Order(menus);
+
+        // when
+        int totalPrice = order.calculateTotalPrice();
+
+        // then
+        assertThat(totalPrice).isEqualTo(6000 * 3 + 15000 * 5);
+    }
 }
