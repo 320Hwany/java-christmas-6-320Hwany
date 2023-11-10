@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class ChristmasDiscountTest {
+class ChristmasDiscountTestPolicy {
 
     @DisplayName("크리스마스 디데이 할인을 적용하고 할인 금액을 계산한다.")
     @Test
@@ -22,7 +22,7 @@ class ChristmasDiscountTest {
         List<Menu> menus = List.of(menu1, menu2);
         Order order = new Order(menus, 10);
 
-        ChristmasDiscount christmasDiscount = new ChristmasDiscount();
+        ChristmasDiscountPolicy christmasDiscount = new ChristmasDiscountPolicy();
 
         // when
         int discountPrice = christmasDiscount.applyDiscount(order);
@@ -42,7 +42,7 @@ class ChristmasDiscountTest {
         List<Menu> menus = List.of(menu1, menu2);
         Order order = new Order(menus, 26);
 
-        ChristmasDiscount christmasDiscount = new ChristmasDiscount();
+        ChristmasDiscountPolicy christmasDiscount = new ChristmasDiscountPolicy();
 
         // when
         int discountPrice = christmasDiscount.applyDiscount(order);

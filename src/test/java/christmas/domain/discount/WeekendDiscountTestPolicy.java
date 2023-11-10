@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WeekendDiscountTest {
+class WeekendDiscountTestPolicy {
 
     @DisplayName("주말 할인을 적용하고 할인 금액을 계산한다.")
     @Test
@@ -22,7 +22,7 @@ class WeekendDiscountTest {
         List<Menu> menus = List.of(menu1, menu2);
         Order order = new Order(menus, 9);
 
-        WeekendDiscount weekendDiscount = new WeekendDiscount();
+        WeekendDiscountPolicy weekendDiscount = new WeekendDiscountPolicy();
 
         // when
         int discountPrice = weekendDiscount.applyDiscount(order);
@@ -42,7 +42,7 @@ class WeekendDiscountTest {
         List<Menu> menus = List.of(menu1, menu2);
         Order order = new Order(menus, 10);
 
-        WeekendDiscount weekendDiscount = new WeekendDiscount();
+        WeekendDiscountPolicy weekendDiscount = new WeekendDiscountPolicy();
 
         // when
         int discountPrice = weekendDiscount.applyDiscount(order);

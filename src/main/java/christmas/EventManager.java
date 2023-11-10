@@ -1,10 +1,10 @@
 package christmas;
 
-import christmas.domain.discount.ChristmasDiscount;
+import christmas.domain.discount.ChristmasDiscountPolicy;
 import christmas.domain.Order;
-import christmas.domain.discount.SpecialDiscount;
-import christmas.domain.discount.WeekdayDiscount;
-import christmas.domain.discount.WeekendDiscount;
+import christmas.domain.discount.SpecialDiscountPolicy;
+import christmas.domain.discount.WeekdayDiscountPolicy;
+import christmas.domain.discount.WeekendDiscountPolicy;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
 
@@ -38,10 +38,10 @@ public class EventManager {
 
     private void applyEvent(final Order order) {
         messagePrinter.printGiveaway(order);
-        ChristmasDiscount christmasDiscount = new ChristmasDiscount();
-        WeekdayDiscount weekdayDiscount = new WeekdayDiscount();
-        WeekendDiscount weekendDiscount = new WeekendDiscount();
-        SpecialDiscount specialDiscount = new SpecialDiscount();
+        ChristmasDiscountPolicy christmasDiscount = new ChristmasDiscountPolicy();
+        WeekdayDiscountPolicy weekdayDiscount = new WeekdayDiscountPolicy();
+        WeekendDiscountPolicy weekendDiscount = new WeekendDiscountPolicy();
+        SpecialDiscountPolicy specialDiscount = new SpecialDiscountPolicy();
         int christmasDiscountPrice = christmasDiscount.applyDiscount(order);
         int weekdayDiscountPrice = weekdayDiscount.applyDiscount(order);
         int weekendDiscountPrice = weekendDiscount.applyDiscount(order);

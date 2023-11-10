@@ -6,7 +6,7 @@ import static christmas.constant.DaysConstant.*;
 import static christmas.constant.PriceConstant.SPECIAL_DISCOUNT;
 import static christmas.constant.PriceConstant.ZERO_DISCOUNT;
 
-public class SpecialDiscount implements Discount {
+public class SpecialDiscountPolicy implements DiscountPolicy {
 
     @Override
     public int applyDiscount(final Order order) {

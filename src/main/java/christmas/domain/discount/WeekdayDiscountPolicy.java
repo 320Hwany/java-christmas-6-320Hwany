@@ -11,7 +11,7 @@ import static christmas.constant.MenuTypeConstant.*;
 import static christmas.constant.PriceConstant.WEEKDAY_DISCOUNT_UNIT;
 import static christmas.constant.PriceConstant.ZERO_DISCOUNT;
 
-public class WeekdayDiscount implements Discount {
+public class WeekdayDiscountPolicy implements DiscountPolicy {
 
     @Override
     public int applyDiscount(final Order order) {

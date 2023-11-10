@@ -5,7 +5,7 @@ import christmas.domain.Order;
 import static christmas.constant.DaysConstant.*;
 import static christmas.constant.PriceConstant.*;
 
-public class ChristmasDiscount implements Discount {
+public class ChristmasDiscountPolicy implements DiscountPolicy {
 
     @Override
     public int applyDiscount(final Order order) {
