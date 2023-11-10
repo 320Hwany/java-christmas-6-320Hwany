@@ -1,6 +1,6 @@
 package christmas;
 
-import christmas.domain.Discount;
+import christmas.domain.discount.ChristmasDiscount;
 import christmas.domain.Order;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
@@ -34,9 +34,8 @@ public class EventManager {
     }
 
     private void applyEvent(final Order order) {
-        int totalPrice = order.calculateTotalPrice();
         messagePrinter.printGiveaway(order);
-        Discount discount = new Discount();
-        discount.applyDiscount(order);
+        ChristmasDiscount christmasDiscount = new ChristmasDiscount();
+        int christmasDiscountPrice = christmasDiscount.applyDiscount(order);
     }
 }
