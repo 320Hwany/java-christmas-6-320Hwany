@@ -1,10 +1,8 @@
 package christmas.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -76,7 +74,7 @@ class OrderTest {
 
     @DisplayName("12만원을 기준으로 증정 이벤트 적용 대상인지 확인한다.")
     @Test
-    void isGiveaway() {
+    void checkGiveaway() {
         // given
         String menuName = "양송이수프";
         Menu menu1 = Menu.createMenu(menuName, 3);
@@ -87,11 +85,11 @@ class OrderTest {
         int totalPrice2 = 119999;
 
         // when
-        boolean giveaway1 = order.isGiveaway(totalPrice1);
-        boolean giveaway2 = order.isGiveaway(totalPrice2);
+        String giveaway1 = order.checkGiveaway(totalPrice1);
+        String giveaway2 = order.checkGiveaway(totalPrice2);
 
         // then
-        assertThat(giveaway1).isTrue();
-        assertThat(giveaway2).isFalse();
+        assertThat(giveaway1).isEqualTo("샴페인 1개");
+        assertThat(giveaway2).isEqualTo("없음");
     }
 }
