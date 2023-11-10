@@ -14,6 +14,7 @@ public final class Discount {
     private void applyChristmasDiscount(final Order order) {
         int basicChristmasDiscount = -1000;
         int expectedVisitDate = order.getExpectedVisitDate();
-        christmasDiscount = basicChristmasDiscount - (100 * (expectedVisitDate - 1));
+        int discountDay = Math.min(expectedVisitDate, 25);
+        christmasDiscount = basicChristmasDiscount - (100 * (discountDay - 1));
     }
 }
