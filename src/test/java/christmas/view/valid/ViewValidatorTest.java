@@ -32,4 +32,27 @@ class ViewValidatorTest {
         assertThatThrownBy(() -> viewValidator.parseInt(inputText))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력받은 숫자가 해당 범위의 날짜인지 확인한다.")
+    @Test
+    void validateExpectedDateSuccess() {
+        // given
+        ViewValidator viewValidator = new ViewValidator();
+        int expectedVisitDate = 31;
+
+        // expected
+        viewValidator.validateExpectedDate(expectedVisitDate);
+    }
+
+    @DisplayName("입력받은 숫자가 해당 범위의 날짜가 아니면 예외가 발생한다.")
+    @Test
+    void validateExpectedDateFail() {
+        // given
+        ViewValidator viewValidator = new ViewValidator();
+        int expectedVisitDate = 32;
+
+        // expected
+        assertThatThrownBy(() -> viewValidator.validateExpectedDate(expectedVisitDate))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
