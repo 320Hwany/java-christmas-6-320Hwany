@@ -17,6 +17,7 @@ public class EventManager {
     public void manageEvent() {
         Order order = receiveVisitInfo();
         processingOrder(order);
+        applyEvent(order);
     }
 
     private Order receiveVisitInfo() {
@@ -29,5 +30,9 @@ public class EventManager {
         messagePrinter.printOrderingMenus(order);
         int totalPrice = order.calculateTotalPrice();
         messagePrinter.printOrderTotalPrice(totalPrice);
+    }
+
+    private void applyEvent(final Order order) {
+        boolean isGiveaway = order.isGiveaway();
     }
 }

@@ -62,6 +62,11 @@ public final class Order {
         return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
 
+    public boolean isGiveaway() {
+        int totalPrice = calculateTotalPrice();
+        return totalPrice >= 120000;
+    }
+
     public int calculateTotalPrice() {
         int totalPrice = 0;
         for (Menu menu : menus) {
