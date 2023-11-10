@@ -1,10 +1,8 @@
 package christmas;
 
-import christmas.domain.Menu;
+import christmas.domain.Order;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
-
-import java.util.List;
 
 public class EventManager {
 
@@ -23,6 +21,6 @@ public class EventManager {
     private void receiveVisitInfo() {
         messagePrinter.printGreetingMessage();
         int expectedVisitDate = messageReceiver.receiveExpectedVisitDate();
-        List<Menu> menus = messageReceiver.receiveOrder();
+        Order order = messageReceiver.receiveOrder();
     }
 }

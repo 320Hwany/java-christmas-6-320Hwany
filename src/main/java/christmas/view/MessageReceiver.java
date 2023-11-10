@@ -2,6 +2,7 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Menu;
+import christmas.domain.Order;
 import christmas.view.valid.ViewValidator;
 
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class MessageReceiver {
         return expectedVisitDate;
     }
 
-    public List<Menu> receiveOrder() {
+    public Order receiveOrder() {
         System.out.println(ORDER_INFO.message);
         String inputText = Console.readLine();
         List<String> orderInfo = Arrays.asList(inputText.split(","));
