@@ -2,6 +2,7 @@ package christmas.domain.discount;
 
 import christmas.domain.Menu;
 import christmas.domain.Order;
+import christmas.domain.discount.policy.SpecialDiscountPolicy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,10 +1,11 @@
 package christmas;
 
-import christmas.domain.discount.ChristmasDiscountPolicy;
+import christmas.domain.discount.DiscountManager;
+import christmas.domain.discount.policy.ChristmasDiscountPolicy;
 import christmas.domain.Order;
-import christmas.domain.discount.SpecialDiscountPolicy;
-import christmas.domain.discount.WeekdayDiscountPolicy;
-import christmas.domain.discount.WeekendDiscountPolicy;
+import christmas.domain.discount.policy.SpecialDiscountPolicy;
+import christmas.domain.discount.policy.WeekdayDiscountPolicy;
+import christmas.domain.discount.policy.WeekendDiscountPolicy;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
 
@@ -42,9 +43,8 @@ public class EventManager {
         WeekdayDiscountPolicy weekdayDiscount = new WeekdayDiscountPolicy();
         WeekendDiscountPolicy weekendDiscount = new WeekendDiscountPolicy();
         SpecialDiscountPolicy specialDiscount = new SpecialDiscountPolicy();
-        int christmasDiscountPrice = christmasDiscount.applyDiscount(order);
-        int weekdayDiscountPrice = weekdayDiscount.applyDiscount(order);
-        int weekendDiscountPrice = weekendDiscount.applyDiscount(order);
-        int specialDiscountPrice = specialDiscount.applyDiscount(order);
+        DiscountManager discountManager =
+                new DiscountManager(christmasDiscount, weekdayDiscount, weekendDiscount, specialDiscount);
+        discountManager.applyDiscount(order);
     }
 }
