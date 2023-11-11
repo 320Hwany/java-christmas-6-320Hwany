@@ -53,12 +53,15 @@ public final class Menu {
         return ZERO_DISCOUNT.price;
     }
 
+    public boolean isNotBeverageMenu() {
+        boolean isBeverage1 = menuInfo.equals(MenuInfo.BEVERAGE_1);
+        boolean isBeverage2 = menuInfo.equals(MenuInfo.BEVERAGE_2);
+        boolean isBeverage3 = menuInfo.equals(MenuInfo.BEVERAGE_3);
 
-    // getter
-    public MenuInfo getMenuInfo() {
-        return menuInfo;
+        return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
 
+    // getter
     public String getMenuName() {
         return menuInfo.menuName;
     }

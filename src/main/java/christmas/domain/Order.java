@@ -48,8 +48,7 @@ public final class Order {
         boolean isOnlyBeverageMenu = true;
 
         for (Menu menu : menus) {
-            MenuInfo menuInfo = menu.getMenuInfo();
-            if (isNotBeverageMenu(menuInfo)) {
+            if (menu.isNotBeverageMenu()) {
                 isOnlyBeverageMenu = false;
             }
         }
@@ -57,14 +56,6 @@ public final class Order {
         if (isOnlyBeverageMenu) {
             throw new IllegalArgumentException(ONLY_BEVERAGE_ORDER_EXCEPTION.message);
         }
-    }
-
-    private boolean isNotBeverageMenu(final MenuInfo menuInfo) {
-        boolean isBeverage1 = menuInfo.equals(MenuInfo.BEVERAGE_1);
-        boolean isBeverage2 = menuInfo.equals(MenuInfo.BEVERAGE_2);
-        boolean isBeverage3 = menuInfo.equals(MenuInfo.BEVERAGE_3);
-
-        return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
 
     public String calculateGiveaway(final int totalPrice) {
@@ -128,10 +119,5 @@ public final class Order {
         return menus.stream()
                 .map(Menu::createOrderingMenuMessage)
                 .collect(toList());
-    }
-
-    // getter
-    public int getExpectedVisitDate() {
-        return expectedVisitDate.expectedVisitDate();
     }
 }
