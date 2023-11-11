@@ -2,14 +2,14 @@ package christmas.config;
 
 import christmas.EventManager;
 import christmas.domain.discount.DiscountManager;
-import christmas.domain.discount.policy.ChristmasDiscountPolicy;
-import christmas.domain.discount.policy.SpecialDiscountPolicy;
-import christmas.domain.discount.policy.WeekdayDiscountPolicy;
-import christmas.domain.discount.policy.WeekendDiscountPolicy;
+import christmas.domain.discount.policy.*;
 import christmas.view.DecimalFormatter;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
 import christmas.view.valid.ViewValidator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventConfig {
 
@@ -42,6 +42,12 @@ public class EventConfig {
         WeekendDiscountPolicy weekendDiscount = new WeekendDiscountPolicy();
         SpecialDiscountPolicy specialDiscount = new SpecialDiscountPolicy();
 
-        return new DiscountManager(christmasDiscount, weekdayDiscount, weekendDiscount, specialDiscount);
+        List<DiscountPolicy> discountPolicies = new ArrayList<>();
+        discountPolicies.add(christmasDiscount);
+        discountPolicies.add(weekdayDiscount);
+        discountPolicies.add(weekendDiscount);
+        discountPolicies.add(specialDiscount);
+
+        return new DiscountManager(discountPolicies);
     }
 }

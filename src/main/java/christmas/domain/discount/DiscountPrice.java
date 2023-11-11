@@ -1,8 +1,10 @@
 package christmas.domain.discount;
 
+import christmas.domain.Order;
 import christmas.view.DecimalFormatter;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static christmas.constant.MessageConstant.*;
@@ -19,6 +21,26 @@ public final class DiscountPrice {
         discountPrice.put("weekendDiscount", weekendDiscount);
         discountPrice.put("specialDiscount", specialDiscount);
         discountPrice.put("giveawayPrice", giveawayPrice);
+    }
+
+    public static DiscountPrice createDiscountPrice(final Order order, final List<Integer> discountPrices) {
+        int christmasDiscount = discountPrices.get(0);
+        int weekdayDiscount = discountPrices.get(1);
+        int weekendDiscount = discountPrices.get(2);
+        int specialDiscount = discountPrices.get(3);
+
+        int giveawayPrice = applyGiveawayEvent(order);
+
+        return new DiscountPrice(christmasDiscount, weekdayDiscount,
+                weekendDiscount, specialDiscount, giveawayPrice);
+    }
+
+    private static int applyGiveawayEvent(final Order order) {
+        int giveawayPrice = 0;
+        if (order.calculateTotalPrice() > 120000) {
+            giveawayPrice = -25000;
+        }
+        return giveawayPrice;
     }
 
     public String createBenefitResultText(final DecimalFormatter decimalFormatter) {

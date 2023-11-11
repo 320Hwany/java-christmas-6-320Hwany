@@ -1,45 +1,27 @@
 package christmas.domain.discount;
 
 import christmas.domain.Order;
-import christmas.domain.discount.policy.ChristmasDiscountPolicy;
-import christmas.domain.discount.policy.SpecialDiscountPolicy;
-import christmas.domain.discount.policy.WeekdayDiscountPolicy;
-import christmas.domain.discount.policy.WeekendDiscountPolicy;
+import christmas.domain.discount.policy.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DiscountManager {
 
-    private final ChristmasDiscountPolicy christmasDiscountPolicy;
-    private final WeekdayDiscountPolicy weekdayDiscountPolicy;
-    private final WeekendDiscountPolicy weekendDiscountPolicy;
-    private final SpecialDiscountPolicy specialDiscountPolicy;
+    private final List<DiscountPolicy> discountPolicies;
 
-    public DiscountManager(final ChristmasDiscountPolicy christmasDiscountPolicy,
-                           final WeekdayDiscountPolicy weekdayDiscountPolicy,
-                           final WeekendDiscountPolicy weekendDiscountPolicy,
-                           final SpecialDiscountPolicy specialDiscountPolicy) {
-        this.christmasDiscountPolicy = christmasDiscountPolicy;
-        this.weekdayDiscountPolicy = weekdayDiscountPolicy;
-        this.weekendDiscountPolicy = weekendDiscountPolicy;
-        this.specialDiscountPolicy = specialDiscountPolicy;
+    public DiscountManager(final List<DiscountPolicy> discountPolicies) {
+        this.discountPolicies = discountPolicies;
     }
 
     public DiscountPrice calculateDiscountPrice(final Order order) {
-        int christmasDiscount = christmasDiscountPolicy.applyDiscount(order);
-        int weekdayDiscount = weekdayDiscountPolicy.applyDiscount(order);
-        int weekendDiscount = weekendDiscountPolicy.applyDiscount(order);
-        int specialDiscount = specialDiscountPolicy.applyDiscount(order);
-        int giveawayPrice = applyGiveawayEvent(order);
-
-        return new DiscountPrice(christmasDiscount, weekdayDiscount,
-                weekendDiscount, specialDiscount, giveawayPrice);
-    }
-
-    private int applyGiveawayEvent(final Order order) {
-        int giveawayPrice = 0;
-        if (order.calculateTotalPrice() > 120000) {
-            giveawayPrice = -25000;
+        List<Integer> discountPrices = new ArrayList<>();
+        for (DiscountPolicy discountPolicy : discountPolicies) {
+            int discountPrice = discountPolicy.applyDiscount(order);
+            discountPrices.add(discountPrice);
         }
-        return giveawayPrice;
+
+        return DiscountPrice.createDiscountPrice(order, discountPrices);
     }
 }
