@@ -39,4 +39,9 @@ public record ExpectedVisitDate(
         int day = expectedVisitDate % SEVEN_DAYS.value;
         return day == FRIDAY.value || day == SATURDAY.value;
     }
+
+    public boolean isSpecialDay() {
+        int day = expectedVisitDate % SEVEN_DAYS.value;
+        return day == SPECIAL_DAY.value || expectedVisitDate == CHRISTMAS.value;
+    }
 }

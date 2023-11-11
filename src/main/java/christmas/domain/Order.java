@@ -112,6 +112,14 @@ public final class Order {
         return totalWeekendDiscount;
     }
 
+    public int calculateSpecialDayDiscount() {
+        if (expectedVisitDate.isSpecialDay()) {
+            return SPECIAL_DISCOUNT.price;
+        }
+
+        return ZERO_DISCOUNT.price;
+    }
+
     public String createPreviewFormattedMessage() {
         return expectedVisitDate.createPreviewFormattedMessage();
     }
