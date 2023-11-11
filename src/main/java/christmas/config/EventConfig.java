@@ -1,6 +1,7 @@
 package christmas.config;
 
 import christmas.EventManager;
+import christmas.view.DecimalFormatter;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
 import christmas.view.valid.ViewValidator;
@@ -14,15 +15,19 @@ public class EventConfig {
         return new EventManager(messagePrinter(), messageReceiver());
     }
 
-    public static MessagePrinter messagePrinter() {
-        return new MessagePrinter();
+    private static MessagePrinter messagePrinter() {
+        return new MessagePrinter(decimalFormatter());
     }
 
-    public static MessageReceiver messageReceiver() {
+    private static MessageReceiver messageReceiver() {
         return new MessageReceiver(viewValidator());
     }
 
-    public static ViewValidator viewValidator() {
+    private static ViewValidator viewValidator() {
         return new ViewValidator();
+    }
+
+    private static DecimalFormatter decimalFormatter() {
+        return new DecimalFormatter();
     }
 }

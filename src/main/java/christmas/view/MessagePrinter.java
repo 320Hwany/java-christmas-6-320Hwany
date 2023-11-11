@@ -4,13 +4,18 @@ import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.domain.discount.DiscountPrice;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import static christmas.constant.MessageConstant.*;
 import static christmas.constant.SymbolConstant.*;
 
 public class MessagePrinter {
+
+    private final DecimalFormatter decimalFormatter;
+
+    public MessagePrinter(final DecimalFormatter decimalFormatter) {
+        this.decimalFormatter = decimalFormatter;
+    }
 
     public void printGreetingMessage() {
         System.out.println(EVENT_PLANNER_GREETING.message);
@@ -28,8 +33,7 @@ public class MessagePrinter {
     }
 
     public void printOrderTotalPrice(final int totalPrice) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        String formattedTotalPrice = decimalFormat.format(totalPrice);
+        String formattedTotalPrice = decimalFormatter.createFormattedMessage(totalPrice);
         System.out.println(TOTAL_PRICE_BEFORE_DISCOUNT.message);
         System.out.println(formattedTotalPrice + PRICE_UNIT.value);
     }
@@ -50,8 +54,7 @@ public class MessagePrinter {
     public void printTotalDiscountPrice(final DiscountPrice discountPrice) {
         System.out.println(TOTAL_DISCOUNT_PRICE.message);
         int totalDiscountPrice = discountPrice.calculateTotalBenefitPrice();
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        String formattedTotalDiscountPrice = decimalFormat.format(totalDiscountPrice);
+        String formattedTotalDiscountPrice = decimalFormatter.createFormattedMessage(totalDiscountPrice);
         System.out.println(formattedTotalDiscountPrice + PRICE_UNIT.value);
     }
 
@@ -61,8 +64,7 @@ public class MessagePrinter {
         int totalPriceAfterDiscount = totalPrice + totalDiscountPrice;
         System.out.println(TOTAL_PRICE_AFTER_DISCOUNT.message);
 
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        String formattedTotalPriceAfterDiscount = decimalFormat.format(totalPriceAfterDiscount);
+        String formattedTotalPriceAfterDiscount = decimalFormatter.createFormattedMessage(totalPriceAfterDiscount);
         System.out.println(formattedTotalPriceAfterDiscount + PRICE_UNIT.value);
     }
 
