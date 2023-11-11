@@ -1,5 +1,8 @@
 package christmas.domain;
 
+
+import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
+
 public final class ExpectedVisitDate {
 
     private final int expectedVisitDate;
@@ -11,7 +14,7 @@ public final class ExpectedVisitDate {
 
     private void validateExpectedDate(final int expectedVisitDate) {
         if (expectedVisitDate < 1 || expectedVisitDate > 31) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(EXPECTED_DATE_EXCEPTION.message);
         }
     }
 

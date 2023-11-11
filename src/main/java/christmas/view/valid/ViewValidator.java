@@ -7,6 +7,8 @@ import christmas.domain.Order;
 import java.util.ArrayList;
 import java.util.List;
 
+import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
+
 
 public class ViewValidator {
 
@@ -14,7 +16,7 @@ public class ViewValidator {
         try {
             return Integer.parseInt(inputText);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(EXPECTED_DATE_EXCEPTION.message);
         }
     }
 
