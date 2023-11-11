@@ -30,7 +30,7 @@ public class ViewValidator {
         }
     }
 
-    public Order validateOrderInfo(final List<String> orderInfo, final ExpectedVisitDate expectedVisitDate) {
+    public List<Menu> validateOrderInfo(final List<String> orderInfo) {
         List<Menu> menus = new ArrayList<>();
 
         for (String menuText : orderInfo) {
@@ -45,7 +45,7 @@ public class ViewValidator {
             menus.add(menu);
         }
 
-        return new Order(menus, expectedVisitDate);
+        return menus;
     }
 
     public void printExceptionMessage(final IllegalArgumentException e) {

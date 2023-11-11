@@ -2,6 +2,7 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.ExpectedVisitDate;
+import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.view.valid.ViewValidator;
 
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static christmas.constant.MessageConstant.*;
+import static christmas.constant.SymbolConstant.*;
 
 public class MessageReceiver {
 
@@ -39,9 +41,10 @@ public class MessageReceiver {
         do {
             inputText = Console.readLine();
             try {
-                List<String> orderInfo = Arrays.asList(inputText.split(","));
-                return viewValidator.validateOrderInfo(orderInfo, expectedVisitDate);
-             } catch (IllegalArgumentException e) {
+                List<String> orderInfo = Arrays.asList(inputText.split(COMMA.value));
+                List<Menu> menus = viewValidator.validateOrderInfo(orderInfo);
+                return new Order(menus, expectedVisitDate);
+            } catch (IllegalArgumentException e) {
                 viewValidator.printExceptionMessage(e);
             }
         } while (true);

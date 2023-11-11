@@ -1,7 +1,7 @@
 package christmas.domain;
 
-
 import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
+import static christmas.constant.MessageConstant.ORDER_EVENT_PREVIEW;
 
 public final class ExpectedVisitDate {
 
@@ -16,6 +16,10 @@ public final class ExpectedVisitDate {
         if (expectedVisitDate < 1 || expectedVisitDate > 31) {
             throw new IllegalArgumentException(EXPECTED_DATE_EXCEPTION.message);
         }
+    }
+
+    public String createPreviewFormattedMessage() {
+        return String.format(ORDER_EVENT_PREVIEW.message, expectedVisitDate);
     }
 
     // getter

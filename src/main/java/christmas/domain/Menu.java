@@ -1,6 +1,8 @@
 package christmas.domain;
 
 import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
+import static christmas.constant.SymbolConstant.BLANK;
+import static christmas.constant.SymbolConstant.QUANTITY_UNIT;
 
 public final class Menu {
 
@@ -26,6 +28,10 @@ public final class Menu {
 
     public int calculatePrice() {
         return menuInfo.price * quantity;
+    }
+
+    public String createOrderingMenuMessage() {
+        return menuInfo.menuName + BLANK.value + quantity + QUANTITY_UNIT.value;
     }
 
     // getter

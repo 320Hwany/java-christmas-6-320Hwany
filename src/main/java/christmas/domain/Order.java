@@ -82,6 +82,10 @@ public final class Order {
         return totalPrice;
     }
 
+    public String createPreviewFormattedMessage() {
+        return expectedVisitDate.createPreviewFormattedMessage();
+    }
+
     // getter
     public List<Menu> getMenus() {
         return Collections.unmodifiableList(menus);

@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import static christmas.constant.MessageConstant.*;
+import static christmas.constant.SymbolConstant.*;
 
 public class MessagePrinter {
 
@@ -16,13 +17,13 @@ public class MessagePrinter {
     }
 
     public void printOrderingMenus(final Order order) {
-        int expectedVisitDate = order.getExpectedVisitDate();
-        String formattedMessage = String.format(ORDER_EVENT_PREVIEW.message, expectedVisitDate);
+        String formattedMessage = order.createPreviewFormattedMessage();
         System.out.println(formattedMessage);
         System.out.println(ORDER_MENU.message);
         List<Menu> menus = order.getMenus();
         for (Menu menu : menus) {
-            System.out.println(menu.getMenuName() + " " + menu.getQuantity() + "개");
+            String orderingMenuMessage = menu.createOrderingMenuMessage();
+            System.out.println(orderingMenuMessage);
         }
     }
 
@@ -30,7 +31,7 @@ public class MessagePrinter {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         String formattedTotalPrice = decimalFormat.format(totalPrice);
         System.out.println(TOTAL_PRICE_BEFORE_DISCOUNT.message);
-        System.out.println(formattedTotalPrice + "원");
+        System.out.println(formattedTotalPrice + PRICE_UNIT.value);
     }
 
     public void printGiveaway(final Order order) {
@@ -51,7 +52,7 @@ public class MessagePrinter {
         int totalDiscountPrice = discountPrice.calculateTotalBenefitPrice();
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         String formattedTotalDiscountPrice = decimalFormat.format(totalDiscountPrice);
-        System.out.println(formattedTotalDiscountPrice + "원");
+        System.out.println(formattedTotalDiscountPrice + PRICE_UNIT.value);
     }
 
     public void printTotalPriceAfterDiscount(final DiscountPrice discountPrice, final Order order) {
@@ -62,7 +63,7 @@ public class MessagePrinter {
 
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         String formattedTotalPriceAfterDiscount = decimalFormat.format(totalPriceAfterDiscount);
-        System.out.println(formattedTotalPriceAfterDiscount + "원");
+        System.out.println(formattedTotalPriceAfterDiscount + PRICE_UNIT.value);
     }
 
     public void printEventBadge(final DiscountPrice discountPrice) {
