@@ -1,8 +1,6 @@
 package christmas.view.valid;
 
-import christmas.domain.ExpectedVisitDate;
 import christmas.domain.Menu;
-import christmas.domain.Order;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +8,8 @@ import java.util.List;
 
 import static christmas.constant.ExceptionConstant.*;
 import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
+import static christmas.constant.MenuInfoConstant.*;
+import static christmas.constant.SymbolConstant.*;
 
 
 public class ViewValidator {
@@ -30,26 +30,34 @@ public class ViewValidator {
         }
     }
 
+    public void printExceptionMessage(final IllegalArgumentException e) {
+        String exceptionMessage = e.getMessage();
+        System.out.println(exceptionMessage);
+    }
+
     public List<Menu> validateOrderInfo(final List<String> orderInfo) {
         List<Menu> menus = new ArrayList<>();
 
         for (String menuText : orderInfo) {
-            List<String> list = Arrays.asList(menuText.split("-"));
-            if (list.size() != 2) {
+            List<String> menuInfo = Arrays.asList(menuText.split(HYPHEN.value));
+            if (isCorrectForm(menuInfo)) {
                 throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
             }
-            String menuName = list.get(0);
-            String quantityText = list.get(1);
-            int quantity = parseIntMenu(quantityText);
-            Menu menu = Menu.createMenu(menuName, quantity);
+            Menu menu = createMenu(menuInfo);
             menus.add(menu);
         }
 
         return menus;
     }
 
-    public void printExceptionMessage(final IllegalArgumentException e) {
-        String exceptionMessage = e.getMessage();
-        System.out.println(exceptionMessage);
+    private boolean isCorrectForm(final List<String> menuInfo) {
+        return menuInfo.size() != MENU_INFO_SIZE.value;
+    }
+
+    private Menu createMenu(final List<String> menuInfo) {
+        String menuName = menuInfo.get(MENU_NAME_INDEX.value);
+        String quantityText = menuInfo.get(QUANTITY_INDEX.value);
+        int quantity = parseIntMenu(quantityText);
+        return Menu.createMenu(menuName, quantity);
     }
 }

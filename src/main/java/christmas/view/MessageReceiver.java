@@ -37,9 +37,8 @@ public class MessageReceiver {
     public Order receiveOrder(final ExpectedVisitDate expectedVisitDate) {
         System.out.println(ORDER_INFO.message);
 
-        String inputText;
         do {
-            inputText = Console.readLine();
+            String inputText = Console.readLine();
             try {
                 List<String> orderInfo = Arrays.asList(inputText.split(COMMA.value));
                 List<Menu> menus = viewValidator.validateOrderInfo(orderInfo);

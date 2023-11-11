@@ -5,7 +5,8 @@ public enum SymbolConstant {
     COMMA(","),
     BLANK(" "),
     QUANTITY_UNIT("개"),
-    PRICE_UNIT("원");
+    PRICE_UNIT("원"),
+    HYPHEN("-");
 
     public final String value;
 
