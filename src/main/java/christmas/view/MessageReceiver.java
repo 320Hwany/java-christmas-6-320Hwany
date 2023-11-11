@@ -1,7 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.domain.Menu;
+import christmas.domain.ExpectedVisitDate;
 import christmas.domain.Order;
 import christmas.view.valid.ViewValidator;
 
@@ -18,13 +18,21 @@ public class MessageReceiver {
         this.viewValidator = viewValidator;
     }
 
-    public int receiveExpectedVisitDate() {
+    public ExpectedVisitDate receiveExpectedVisitDate() {
         System.out.println(EXPECTED_VISIT_DATE.message);
-        String inputText = Console.readLine();
-        return viewValidator.parseInt(inputText);
+
+        do {
+            String inputText = Console.readLine();
+            try {
+                int inputNumber = viewValidator.parseInt(inputText);
+                return new ExpectedVisitDate(inputNumber);
+            } catch (IllegalArgumentException e) {
+                viewValidator.printExceptionMessage(e);
+            }
+        } while (true);
     }
 
-    public Order receiveOrder(final int expectedVisitDate) {
+    public Order receiveOrder(final ExpectedVisitDate expectedVisitDate) {
         System.out.println(ORDER_INFO.message);
         String inputText = Console.readLine();
         List<String> orderInfo = Arrays.asList(inputText.split(","));

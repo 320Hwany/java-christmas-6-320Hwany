@@ -8,21 +8,14 @@ import java.util.Set;
 public final class Order {
 
     private final List<Menu> menus;
-    private final int expectedVisitDate;
+    private final ExpectedVisitDate expectedVisitDate;
 
-    public Order(final List<Menu> menus, final int expectedVisitDate) {
-        validateExpectedDate(expectedVisitDate);
+    public Order(final List<Menu> menus, final ExpectedVisitDate expectedVisitDate) {
         validateMenusQuantity(menus);
         validateDuplication(menus);
         validateOnlyBeverage(menus);
         this.menus = menus;
         this.expectedVisitDate = expectedVisitDate;
-    }
-
-    private void validateExpectedDate(final int expectedVisitDate) {
-        if (expectedVisitDate < 1 || expectedVisitDate > 31) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private void validateMenusQuantity(final List<Menu> menus) {
@@ -93,6 +86,6 @@ public final class Order {
     }
 
     public int getExpectedVisitDate() {
-        return expectedVisitDate;
+        return expectedVisitDate.getExpectedVisitDate();
     }
 }

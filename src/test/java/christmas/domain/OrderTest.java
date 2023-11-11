@@ -23,7 +23,7 @@ class OrderTest {
         int expectedVisitDate = 32;
 
         // expected
-        assertThatThrownBy(() -> new Order(menus, expectedVisitDate))
+        assertThatThrownBy(() -> new Order(menus, new ExpectedVisitDate(expectedVisitDate)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -38,7 +38,7 @@ class OrderTest {
         List<Menu> menus = List.of(menu1, menu2);
 
         // expected
-        assertThatThrownBy(() -> new Order(menus, 10))
+        assertThatThrownBy(() -> new Order(menus, new ExpectedVisitDate(10)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -53,7 +53,7 @@ class OrderTest {
         List<Menu> menus = List.of(menu1, menu2);
 
         // expected
-        assertThatThrownBy(() -> new Order(menus, 10))
+        assertThatThrownBy(() -> new Order(menus, new ExpectedVisitDate(10)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -68,7 +68,7 @@ class OrderTest {
         List<Menu> menus = List.of(menu1, menu2);
 
         // expected
-        assertThatThrownBy(() -> new Order(menus, 10))
+        assertThatThrownBy(() -> new Order(menus, new ExpectedVisitDate(10)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -81,7 +81,7 @@ class OrderTest {
         Menu menu1 = Menu.createMenu(menuName1, 3);
         Menu menu2 = Menu.createMenu(menuName2, 5);
         List<Menu> menus = List.of(menu1, menu2);
-        Order order = new Order(menus, 10);
+        Order order = new Order(menus, new ExpectedVisitDate(10));
 
         // when
         int totalPrice = order.calculateTotalPrice();
@@ -97,7 +97,7 @@ class OrderTest {
         String menuName = "양송이수프";
         Menu menu1 = Menu.createMenu(menuName, 3);
         List<Menu> menus = List.of(menu1);
-        Order order = new Order(menus, 10);
+        Order order = new Order(menus, new ExpectedVisitDate(10));
 
         int totalPrice1 = 120000;
         int totalPrice2 = 119999;

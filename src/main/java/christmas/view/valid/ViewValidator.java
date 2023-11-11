@@ -1,5 +1,6 @@
 package christmas.view.valid;
 
+import christmas.domain.ExpectedVisitDate;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 
@@ -17,7 +18,7 @@ public class ViewValidator {
         }
     }
 
-    public Order validateOrderInfo(final List<String> orderInfo, final int expectedVisitDate) {
+    public Order validateOrderInfo(final List<String> orderInfo, final ExpectedVisitDate expectedVisitDate) {
         List<Menu> menus = new ArrayList<>();
 
         for (String menuText : orderInfo) {
@@ -29,5 +30,10 @@ public class ViewValidator {
         }
 
         return new Order(menus, expectedVisitDate);
+    }
+
+    public void printExceptionMessage(final IllegalArgumentException e) {
+        String exceptionMessage = e.getMessage();
+        System.out.println(exceptionMessage);
     }
 }

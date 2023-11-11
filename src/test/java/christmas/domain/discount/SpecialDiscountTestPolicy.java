@@ -1,5 +1,6 @@
 package christmas.domain.discount;
 
+import christmas.domain.ExpectedVisitDate;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.domain.discount.policy.SpecialDiscountPolicy;
@@ -21,7 +22,7 @@ class SpecialDiscountTestPolicy {
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 5);
         List<Menu> menus = List.of(menu1, menu2);
-        Order order = new Order(menus, 10);
+        Order order = new Order(menus, new ExpectedVisitDate(10));
 
         SpecialDiscountPolicy specialDiscount = new SpecialDiscountPolicy();
 
@@ -41,7 +42,7 @@ class SpecialDiscountTestPolicy {
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 5);
         List<Menu> menus = List.of(menu1, menu2);
-        Order order = new Order(menus, 11);
+        Order order = new Order(menus, new ExpectedVisitDate(11));
 
         SpecialDiscountPolicy specialDiscount = new SpecialDiscountPolicy();
 

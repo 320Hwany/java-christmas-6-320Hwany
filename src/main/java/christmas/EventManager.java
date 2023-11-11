@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.domain.ExpectedVisitDate;
 import christmas.domain.discount.DiscountManager;
 import christmas.domain.discount.DiscountPrice;
 import christmas.domain.discount.policy.ChristmasDiscountPolicy;
@@ -29,7 +30,7 @@ public class EventManager {
 
     private Order receiveVisitInfo() {
         messagePrinter.printGreetingMessage();
-        int expectedVisitDate = messageReceiver.receiveExpectedVisitDate();
+        ExpectedVisitDate expectedVisitDate = messageReceiver.receiveExpectedVisitDate();
         return messageReceiver.receiveOrder(expectedVisitDate);
     }
 
