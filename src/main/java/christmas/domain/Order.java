@@ -1,13 +1,11 @@
 package christmas.domain;
 
-import christmas.constant.ExceptionConstant;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
+import static christmas.constant.ExceptionConstant.*;
 
 public final class Order {
 
@@ -29,7 +27,7 @@ public final class Order {
         }
 
         if (sum > 20) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MAX_MENU_QUANTITY_EXCEPTION.message);
         }
     }
 
@@ -56,7 +54,7 @@ public final class Order {
         }
 
         if (isOnlyBeverageMenu) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ONLY_BEVERAGE_ORDER_EXCEPTION.message);
         }
     }
 
