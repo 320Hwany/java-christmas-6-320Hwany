@@ -15,7 +15,7 @@ class ViewValidatorTest {
         String inputText = "10";
 
         // when
-        int expectedVisitDate = viewValidator.parseInt(inputText);
+        int expectedVisitDate = viewValidator.parseIntExpectedDate(inputText);
 
         // then
         assertThat(expectedVisitDate).isEqualTo(10);
@@ -29,7 +29,7 @@ class ViewValidatorTest {
         String inputText = "숫자가 아님";
 
         // expected
-        assertThatThrownBy(() -> viewValidator.parseInt(inputText))
+        assertThatThrownBy(() -> viewValidator.parseIntExpectedDate(inputText))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

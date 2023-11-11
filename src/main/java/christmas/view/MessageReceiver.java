@@ -24,7 +24,7 @@ public class MessageReceiver {
         do {
             String inputText = Console.readLine();
             try {
-                int inputNumber = viewValidator.parseInt(inputText);
+                int inputNumber = viewValidator.parseIntExpectedDate(inputText);
                 return new ExpectedVisitDate(inputNumber);
             } catch (IllegalArgumentException e) {
                 viewValidator.printExceptionMessage(e);
@@ -35,7 +35,7 @@ public class MessageReceiver {
     public Order receiveOrder(final ExpectedVisitDate expectedVisitDate) {
         System.out.println(ORDER_INFO.message);
 
-        String inputText = "";
+        String inputText;
         do {
             inputText = Console.readLine();
             try {
