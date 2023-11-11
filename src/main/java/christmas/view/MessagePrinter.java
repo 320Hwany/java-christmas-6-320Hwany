@@ -47,7 +47,7 @@ public class MessagePrinter {
 
     public void printBenefitResult(final DiscountPrice discountPrice) {
         System.out.println(BENEFIT_RESULT.message);
-        String benefitResultText = discountPrice.createBenefitResultText();
+        String benefitResultText = discountPrice.createBenefitResultText(decimalFormatter);
         System.out.println(benefitResultText);
     }
 
