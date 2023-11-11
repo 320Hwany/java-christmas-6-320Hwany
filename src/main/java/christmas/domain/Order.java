@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static christmas.constant.ExceptionConstant.*;
 import static java.util.stream.Collectors.toList;
@@ -73,12 +72,9 @@ public final class Order {
     }
 
     public int calculateTotalPrice() {
-        int totalPrice = 0;
-        for (Menu menu : menus) {
-            totalPrice += menu.calculatePrice();
-        }
-
-        return totalPrice;
+        return menus.stream()
+                .mapToInt(Menu::calculatePrice)
+                .sum();
     }
 
     public String createPreviewFormattedMessage() {
