@@ -22,6 +22,6 @@ public class DiscountManager {
             discountPrices.add(discountPrice);
         }
 
-        return DiscountPrice.createDiscountPrice(order, discountPrices);
+        return new DiscountPrice(order, discountPrices);
     }
 }

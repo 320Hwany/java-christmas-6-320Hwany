@@ -3,39 +3,25 @@ package christmas.domain.discount;
 import christmas.domain.Order;
 import christmas.view.DecimalFormatter;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import static christmas.constant.DiscountInfoConstant.*;
 import static christmas.constant.MessageConstant.*;
+import static christmas.constant.SymbolConstant.PRICE_UNIT_LINE_BREAK;
 
 public final class DiscountPrice {
 
-    private final Map<String, Integer> discountPrice = new HashMap<>();
+    private final List<Integer> discountPriceList = new ArrayList<>();
     private final StringBuilder result = new StringBuilder();
 
-    public DiscountPrice(final int christmasDiscount, final int weekdayDiscount, final int weekendDiscount,
-                         final int specialDiscount, final int giveawayPrice) {
-        discountPrice.put("christmasDiscount", christmasDiscount);
-        discountPrice.put("weekdayDiscount", weekdayDiscount);
-        discountPrice.put("weekendDiscount", weekendDiscount);
-        discountPrice.put("specialDiscount", specialDiscount);
-        discountPrice.put("giveawayPrice", giveawayPrice);
-    }
-
-    public static DiscountPrice createDiscountPrice(final Order order, final List<Integer> discountPrices) {
-        int christmasDiscount = discountPrices.get(0);
-        int weekdayDiscount = discountPrices.get(1);
-        int weekendDiscount = discountPrices.get(2);
-        int specialDiscount = discountPrices.get(3);
-
+    public DiscountPrice(final Order order, final List<Integer> discountPrices) {
         int giveawayPrice = applyGiveawayEvent(order);
-
-        return new DiscountPrice(christmasDiscount, weekdayDiscount,
-                weekendDiscount, specialDiscount, giveawayPrice);
+        discountPriceList.addAll(discountPrices);
+        discountPriceList.add(giveawayPrice);
     }
 
-    private static int applyGiveawayEvent(final Order order) {
+    private int applyGiveawayEvent(final Order order) {
         int giveawayPrice = 0;
         if (order.calculateTotalPrice() > 120000) {
             giveawayPrice = -25000;
@@ -55,42 +41,46 @@ public final class DiscountPrice {
             return result.toString();
         }
 
-        return "없음";
+        return NOTHING.message;
     }
 
     public int calculateTotalBenefitPrice() {
-        return discountPrice.values()
+        return discountPriceList
                 .stream()
                 .mapToInt(price -> price)
                 .sum();
     }
 
     public int calculateTotalDiscountPrice() {
-        int totalBenefitPrice = discountPrice.values()
+        int totalBenefitPrice = discountPriceList
                 .stream()
                 .mapToInt(price -> price)
                 .sum();
 
-        int giveawayPrice = discountPrice.get("giveawayPrice");
+        int giveawayPrice = discountPriceList.get(GIVEAWAY_INDEX.value);
 
         return totalBenefitPrice - giveawayPrice;
     }
 
     private boolean isAddChristmasResult(final DecimalFormatter decimalFormatter) {
-        int christmasDiscount = discountPrice.get("christmasDiscount");
+        int christmasDiscount = discountPriceList.get(CHRISTMAS_DISCOUNT_INDEX.value);
         if (christmasDiscount < 0) {
             String formattedChristmasDiscount = decimalFormatter.createFormattedMessage(christmasDiscount);
-            result.append(CHRISTMAS_DISCOUNT.message).append(formattedChristmasDiscount).append("원\n");
+            result.append(CHRISTMAS_DISCOUNT.message)
+                    .append(formattedChristmasDiscount)
+                    .append(PRICE_UNIT_LINE_BREAK.value);
             return true;
         }
         return false;
     }
 
     private boolean isAddWeekdayResult(final DecimalFormatter decimalFormatter) {
-        int weekdayDiscount = discountPrice.get("weekdayDiscount");
+        int weekdayDiscount = discountPriceList.get(WEEKDAY_DISCOUNT_INDEX.value);
         if (weekdayDiscount < 0) {
             String formattedWeekdayDiscount = decimalFormatter.createFormattedMessage(weekdayDiscount);
-            result.append(WEEKDAY_DISCOUNT.message).append(formattedWeekdayDiscount).append("원\n");
+            result.append(WEEKDAY_DISCOUNT.message)
+                    .append(formattedWeekdayDiscount)
+                    .append(PRICE_UNIT_LINE_BREAK.value);
             return true;
         }
         return false;
@@ -98,30 +88,36 @@ public final class DiscountPrice {
 
 
     private boolean isAddWeekendResult(final DecimalFormatter decimalFormatter) {
-        int weekendDiscount = discountPrice.get("weekendDiscount");
+        int weekendDiscount = discountPriceList.get(WEEKEND_DISCOUNT_INDEX.value);
         if (weekendDiscount < 0) {
             String formattedWeekendDiscount = decimalFormatter.createFormattedMessage(weekendDiscount);
-            result.append(WEEKEND_DISCOUNT.message).append(formattedWeekendDiscount).append("원\n");
+            result.append(WEEKEND_DISCOUNT.message)
+                    .append(formattedWeekendDiscount)
+                    .append(PRICE_UNIT_LINE_BREAK.value);
             return true;
         }
         return false;
     }
 
     private boolean isAddSpecialResult(final DecimalFormatter decimalFormatter) {
-        int specialDiscount = discountPrice.get("specialDiscount");
+        int specialDiscount = discountPriceList.get(SPECIAL_DISCOUNT_INDEX.value);
         if (specialDiscount < 0) {
             String formattedSpecialDiscount = decimalFormatter.createFormattedMessage(specialDiscount);
-            result.append(SPECIAL_DISCOUNT.message).append(formattedSpecialDiscount).append("원\n");
+            result.append(SPECIAL_DISCOUNT.message)
+                    .append(formattedSpecialDiscount)
+                    .append(PRICE_UNIT_LINE_BREAK.value);
             return true;
         }
         return false;
     }
 
     private boolean isAddGiveawayResult(final DecimalFormatter decimalFormatter) {
-        int giveawayPrice = discountPrice.get("giveawayPrice");
+        int giveawayPrice = discountPriceList.get(GIVEAWAY_INDEX.value);
         if (giveawayPrice != 0) {
             String formattedGiveawayPrice = decimalFormatter.createFormattedMessage(giveawayPrice);
-            result.append(GIVEAWAY_EVENT.message).append(formattedGiveawayPrice).append("원\n");
+            result.append(GIVEAWAY_EVENT.message)
+                    .append(formattedGiveawayPrice)
+                    .append(PRICE_UNIT_LINE_BREAK.value);
             return true;
         }
         return false;
