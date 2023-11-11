@@ -6,6 +6,7 @@ import christmas.domain.discount.policy.SpecialDiscountPolicy;
 import christmas.domain.discount.policy.WeekdayDiscountPolicy;
 import christmas.domain.discount.policy.WeekendDiscountPolicy;
 
+
 public class DiscountManager {
 
     private final ChristmasDiscountPolicy christmasDiscountPolicy;
@@ -28,11 +29,17 @@ public class DiscountManager {
         int weekdayDiscount = weekdayDiscountPolicy.applyDiscount(order);
         int weekendDiscount = weekendDiscountPolicy.applyDiscount(order);
         int specialDiscount = specialDiscountPolicy.applyDiscount(order);
+        int giveawayPrice = applyGiveawayEvent(order);
+
+        return new DiscountPrice(christmasDiscount, weekdayDiscount,
+                weekendDiscount, specialDiscount, giveawayPrice);
+    }
+
+    private int applyGiveawayEvent(final Order order) {
         int giveawayPrice = 0;
         if (order.calculateTotalPrice() > 120000) {
             giveawayPrice = -25000;
         }
-
-        return new DiscountPrice(christmasDiscount, weekdayDiscount, weekendDiscount, specialDiscount, giveawayPrice);
+        return giveawayPrice;
     }
 }

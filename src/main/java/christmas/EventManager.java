@@ -23,8 +23,8 @@ public class EventManager {
     public void manageEvent() {
         Order order = receiveVisitInfo();
         processingOrder(order);
-        applyEvent(order);
-        processEventResult(discountManager, order);
+        DiscountPrice discountPrice = applyEvent(order);
+        processingEventResult(discountPrice, order);
     }
 
     private Order receiveVisitInfo() {
@@ -39,12 +39,12 @@ public class EventManager {
         messagePrinter.printOrderTotalPrice(totalPrice);
     }
 
-    private void applyEvent(final Order order) {
+    private DiscountPrice applyEvent(final Order order) {
         messagePrinter.printGiveaway(order);
+        return discountManager.calculateDiscountPrice(order);
     }
 
-    private void processEventResult(final DiscountManager discountManager, final Order order) {
-        DiscountPrice discountPrice = discountManager.calculateDiscountPrice(order);
+    private void processingEventResult(final DiscountPrice discountPrice, final Order order) {
         messagePrinter.printBenefitResult(discountPrice);
         messagePrinter.printTotalDiscountPrice(discountPrice);
         messagePrinter.printTotalPriceAfterDiscount(discountPrice, order);
