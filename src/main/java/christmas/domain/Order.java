@@ -92,6 +92,6 @@ public final class Order {
     }
 
     public int getExpectedVisitDate() {
-        return expectedVisitDate.getExpectedVisitDate();
+        return expectedVisitDate.expectedVisitDate();
     }
 }
