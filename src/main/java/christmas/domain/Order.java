@@ -6,6 +6,7 @@ import static christmas.constant.ExceptionConstant.*;
 import static christmas.constant.MessageConstant.GIVE_AWAY_EVENT;
 import static christmas.constant.MessageConstant.NOTHING;
 import static christmas.constant.PriceConstant.GIVE_AWAY_CONDITION;
+import static christmas.constant.PriceConstant.ZERO_DISCOUNT;
 import static java.util.stream.Collectors.toList;
 
 public final class Order {
@@ -78,6 +79,16 @@ public final class Order {
         return menus.stream()
                 .mapToInt(Menu::calculatePrice)
                 .sum();
+    }
+
+    public int calculateTotalWeekdayDiscount() {
+        int totalWeekdayDiscount = ZERO_DISCOUNT.price;
+        for (Menu menu : menus) {
+            int weekdayDiscount = menu.calculateWeekdayDiscount(expectedVisitDate);
+            totalWeekdayDiscount -= weekdayDiscount;
+        }
+
+        return totalWeekdayDiscount;
     }
 
     public String createPreviewFormattedMessage() {

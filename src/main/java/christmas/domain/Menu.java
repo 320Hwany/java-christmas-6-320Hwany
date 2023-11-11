@@ -1,6 +1,9 @@
 package christmas.domain;
 
 import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
+import static christmas.constant.MenuTypeConstant.DESSERT;
+import static christmas.constant.PriceConstant.WEEKDAY_DISCOUNT_UNIT;
+import static christmas.constant.PriceConstant.ZERO_DISCOUNT;
 import static christmas.constant.SymbolConstant.BLANK;
 import static christmas.constant.SymbolConstant.QUANTITY_UNIT;
 
@@ -32,6 +35,14 @@ public final class Menu {
 
     public String createOrderingMenuMessage() {
         return menuInfo.menuName + BLANK.value + quantity + QUANTITY_UNIT.value;
+    }
+
+    public int calculateWeekdayDiscount(final ExpectedVisitDate expectedVisitDate) {
+        if (menuInfo.menuType.equals(DESSERT.type) && expectedVisitDate.isWeekday()) {
+            return WEEKDAY_DISCOUNT_UNIT.price * quantity;
+        }
+
+        return ZERO_DISCOUNT.price;
     }
 
     // getter

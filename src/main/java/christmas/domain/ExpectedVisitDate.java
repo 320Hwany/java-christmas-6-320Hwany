@@ -1,7 +1,6 @@
 package christmas.domain;
 
-import static christmas.constant.DaysConstant.DECEMBER_END_DAY;
-import static christmas.constant.DaysConstant.DECEMBER_START_DAY;
+import static christmas.constant.DaysConstant.*;
 import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
 import static christmas.constant.MessageConstant.ORDER_EVENT_PREVIEW;
 
@@ -21,5 +20,10 @@ public record ExpectedVisitDate(
 
     public String createPreviewFormattedMessage() {
         return String.format(ORDER_EVENT_PREVIEW.message, expectedVisitDate);
+    }
+
+    public boolean isWeekday() {
+        int day = expectedVisitDate % SEVEN_DAYS.value;
+        return !(day == FRIDAY.value || day == SATURDAY.value);
     }
 }
