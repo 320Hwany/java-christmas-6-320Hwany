@@ -21,11 +21,11 @@ public final class Order {
         this.expectedVisitDate = expectedVisitDate;
     }
 
+    // validation
     private void validateMenusQuantity(final List<Menu> menus) {
-        int sum = 0;
-        for (Menu menu : menus) {
-            sum += menu.getQuantity();
-        }
+        int sum = menus.stream()
+                .mapToInt(Menu::getQuantity)
+                .sum();
 
         if (sum > 20) {
             throw new IllegalArgumentException(MAX_MENU_QUANTITY_EXCEPTION.message);
@@ -33,29 +33,30 @@ public final class Order {
     }
 
     private void validateDuplication(final List<Menu> menus) {
-        Set<String> distinctMenuName = new HashSet<>();
-        for (Menu menu : menus) {
-            String menuName = menu.getMenuName();
-            distinctMenuName.add(menuName);
-        }
+        long distinctMenuCount = menus.stream()
+                .map(Menu::getMenuName)
+                .distinct()
+                .count();
 
-        if (distinctMenuName.size() != menus.size()) {
+        if (distinctMenuCount != menus.size()) {
             throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
         }
     }
 
     private void validateOnlyBeverage(final List<Menu> menus) {
-        boolean isOnlyBeverageMenu = true;
+        boolean hasNonBeverageMenu = menus.stream()
+                .anyMatch(Menu::isNotBeverageMenu);
 
-        for (Menu menu : menus) {
-            if (menu.isNotBeverageMenu()) {
-                isOnlyBeverageMenu = false;
-            }
-        }
-
-        if (isOnlyBeverageMenu) {
+        if (!hasNonBeverageMenu) {
             throw new IllegalArgumentException(ONLY_BEVERAGE_ORDER_EXCEPTION.message);
         }
+    }
+
+    // business
+    public int calculateTotalPrice() {
+        return menus.stream()
+                .mapToInt(Menu::calculatePrice)
+                .sum();
     }
 
     public String calculateGiveaway(final int totalPrice) {
@@ -63,12 +64,6 @@ public final class Order {
             return GIVE_AWAY_EVENT.message;
         }
         return NOTHING.message;
-    }
-
-    public int calculateTotalPrice() {
-        return menus.stream()
-                .mapToInt(Menu::calculatePrice)
-                .sum();
     }
 
     public int calculateTotalChristmasDiscount() {
