@@ -34,8 +34,16 @@ public class MessageReceiver {
 
     public Order receiveOrder(final ExpectedVisitDate expectedVisitDate) {
         System.out.println(ORDER_INFO.message);
-        String inputText = Console.readLine();
-        List<String> orderInfo = Arrays.asList(inputText.split(","));
-        return viewValidator.validateOrderInfo(orderInfo, expectedVisitDate);
+
+        String inputText = "";
+        do {
+            inputText = Console.readLine();
+            try {
+                List<String> orderInfo = Arrays.asList(inputText.split(","));
+                return viewValidator.validateOrderInfo(orderInfo, expectedVisitDate);
+             } catch (IllegalArgumentException e) {
+                viewValidator.printExceptionMessage(e);
+            }
+        } while (true);
     }
 }

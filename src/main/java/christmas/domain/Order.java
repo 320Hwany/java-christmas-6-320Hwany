@@ -1,9 +1,13 @@
 package christmas.domain;
 
+import christmas.constant.ExceptionConstant;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
 
 public final class Order {
 
@@ -37,7 +41,7 @@ public final class Order {
         }
 
         if (distinctMenuName.size() != menus.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
         }
     }
 

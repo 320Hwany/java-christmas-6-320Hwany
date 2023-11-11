@@ -3,6 +3,8 @@ package christmas.domain;
 import java.util.Arrays;
 import java.util.List;
 
+import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
+
 public enum MenuInfo {
 
     APPETIZER_1("appetizer", "양송이수프", 6000),
@@ -43,6 +45,6 @@ public enum MenuInfo {
             }
         }
 
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
     }
 }

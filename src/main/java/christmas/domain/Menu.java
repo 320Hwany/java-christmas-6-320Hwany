@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
+
 public final class Menu {
 
     private final MenuInfo menuInfo;
@@ -18,7 +20,7 @@ public final class Menu {
 
     private void validateQuantity(final int quantity) {
         if (quantity < 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
         }
     }
 
