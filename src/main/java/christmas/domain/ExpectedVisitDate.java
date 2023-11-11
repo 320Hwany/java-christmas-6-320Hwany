@@ -22,6 +22,14 @@ public record ExpectedVisitDate(
         return String.format(ORDER_EVENT_PREVIEW.message, expectedVisitDate);
     }
 
+    public int calculateApplyDays() {
+        return expectedVisitDate - 1;
+    }
+
+    public boolean isNotChristmasDDay() {
+        return expectedVisitDate > CHRISTMAS.value;
+    }
+
     public boolean isWeekday() {
         int day = expectedVisitDate % SEVEN_DAYS.value;
         return !(day == FRIDAY.value || day == SATURDAY.value);

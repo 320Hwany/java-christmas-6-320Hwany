@@ -2,11 +2,11 @@ package christmas.domain;
 
 import java.util.*;
 
+import static christmas.constant.DaysConstant.CHRISTMAS;
 import static christmas.constant.ExceptionConstant.*;
 import static christmas.constant.MessageConstant.GIVE_AWAY_EVENT;
 import static christmas.constant.MessageConstant.NOTHING;
-import static christmas.constant.PriceConstant.GIVE_AWAY_CONDITION;
-import static christmas.constant.PriceConstant.ZERO_DISCOUNT;
+import static christmas.constant.PriceConstant.*;
 import static java.util.stream.Collectors.toList;
 
 public final class Order {
@@ -79,6 +79,18 @@ public final class Order {
         return menus.stream()
                 .mapToInt(Menu::calculatePrice)
                 .sum();
+    }
+
+    public int calculateTotalChristmasDiscount() {
+        int basicChristmasDiscount = CHRISTMAS_BASIC_DISCOUNT.price;
+        if (expectedVisitDate.isNotChristmasDDay()) {
+            return ZERO_DISCOUNT.price;
+        }
+
+        int applyDays = expectedVisitDate.calculateApplyDays();
+        int christmasDayDiscount = CHRISTMAS_DISCOUNT_UNIT.price * applyDays;
+
+        return basicChristmasDiscount - christmasDayDiscount;
     }
 
     public int calculateTotalWeekdayDiscount() {
