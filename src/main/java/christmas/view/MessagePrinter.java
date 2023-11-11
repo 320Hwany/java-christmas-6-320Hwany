@@ -1,6 +1,5 @@
 package christmas.view;
 
-import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.domain.discount.DiscountPrice;
 
@@ -39,8 +38,8 @@ public class MessagePrinter {
     public void printGiveaway(final Order order) {
         System.out.println(GIVE_AWAY_MENU.message);
         int totalPrice = order.calculateTotalPrice();
-        String giveaway = order.checkGiveaway(totalPrice);
-        System.out.println(giveaway);
+        String giveawayResult = order.calculateGiveaway(totalPrice);
+        System.out.println(giveawayResult);
     }
 
     public void printBenefitResult(final DiscountPrice discountPrice) {

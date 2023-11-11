@@ -7,7 +7,8 @@ public enum PriceConstant {
     WEEKDAY_DISCOUNT_UNIT(2023),
     WEEKEND_DISCOUNT_UNIT(2023),
     SPECIAL_DISCOUNT(-1000),
-    ZERO_DISCOUNT(0);
+    ZERO_DISCOUNT(0),
+    GIVE_AWAY_CONDITION(120000);
 
     public final int price;
 

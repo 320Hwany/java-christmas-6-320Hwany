@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import christmas.view.valid.ViewValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -103,8 +102,8 @@ class OrderTest {
         int totalPrice2 = 119999;
 
         // when
-        String giveaway1 = order.checkGiveaway(totalPrice1);
-        String giveaway2 = order.checkGiveaway(totalPrice2);
+        String giveaway1 = order.calculateGiveaway(totalPrice1);
+        String giveaway2 = order.calculateGiveaway(totalPrice2);
 
         // then
         assertThat(giveaway1).isEqualTo("샴페인 1개");

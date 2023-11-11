@@ -3,6 +3,9 @@ package christmas.domain;
 import java.util.*;
 
 import static christmas.constant.ExceptionConstant.*;
+import static christmas.constant.MessageConstant.GIVE_AWAY_EVENT;
+import static christmas.constant.MessageConstant.NOTHING;
+import static christmas.constant.PriceConstant.GIVE_AWAY_CONDITION;
 import static java.util.stream.Collectors.toList;
 
 public final class Order {
@@ -64,11 +67,11 @@ public final class Order {
         return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
 
-    public String checkGiveaway(final int totalPrice) {
-        if (totalPrice >= 120000) {
-            return "샴페인 1개";
+    public String calculateGiveaway(final int totalPrice) {
+        if (totalPrice >= GIVE_AWAY_CONDITION.price) {
+            return GIVE_AWAY_EVENT.message;
         }
-        return "없음";
+        return NOTHING.message;
     }
 
     public int calculateTotalPrice() {
