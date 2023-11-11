@@ -2,7 +2,6 @@ package christmas.domain;
 
 import java.util.*;
 
-import static christmas.constant.DaysConstant.CHRISTMAS;
 import static christmas.constant.ExceptionConstant.*;
 import static christmas.constant.MessageConstant.GIVE_AWAY_EVENT;
 import static christmas.constant.MessageConstant.NOTHING;
@@ -103,6 +102,16 @@ public final class Order {
         return totalWeekdayDiscount;
     }
 
+    public int calculateTotalWeekendDiscount() {
+        int totalWeekendDiscount = ZERO_DISCOUNT.price;
+        for (Menu menu : menus) {
+            int weekendDiscount = menu.calculateWeekendDiscount(expectedVisitDate);
+            totalWeekendDiscount -= weekendDiscount;
+        }
+
+        return totalWeekendDiscount;
+    }
+
     public String createPreviewFormattedMessage() {
         return expectedVisitDate.createPreviewFormattedMessage();
     }
@@ -114,10 +123,6 @@ public final class Order {
     }
 
     // getter
-    public List<Menu> getMenus() {
-        return Collections.unmodifiableList(menus);
-    }
-
     public int getExpectedVisitDate() {
         return expectedVisitDate.expectedVisitDate();
     }

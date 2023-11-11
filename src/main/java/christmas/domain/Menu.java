@@ -2,8 +2,8 @@ package christmas.domain;
 
 import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
 import static christmas.constant.MenuTypeConstant.DESSERT;
-import static christmas.constant.PriceConstant.WEEKDAY_DISCOUNT_UNIT;
-import static christmas.constant.PriceConstant.ZERO_DISCOUNT;
+import static christmas.constant.MenuTypeConstant.MAIN_MENU;
+import static christmas.constant.PriceConstant.*;
 import static christmas.constant.SymbolConstant.BLANK;
 import static christmas.constant.SymbolConstant.QUANTITY_UNIT;
 
@@ -44,6 +44,15 @@ public final class Menu {
 
         return ZERO_DISCOUNT.price;
     }
+
+    public int calculateWeekendDiscount(final ExpectedVisitDate expectedVisitDate) {
+        if (menuInfo.menuType.equals(MAIN_MENU.type) && expectedVisitDate.isWeekend()) {
+            return WEEKEND_DISCOUNT_UNIT.price * quantity;
+        }
+
+        return ZERO_DISCOUNT.price;
+    }
+
 
     // getter
     public MenuInfo getMenuInfo() {

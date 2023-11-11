@@ -34,4 +34,9 @@ public record ExpectedVisitDate(
         int day = expectedVisitDate % SEVEN_DAYS.value;
         return !(day == FRIDAY.value || day == SATURDAY.value);
     }
+
+    public boolean isWeekend() {
+        int day = expectedVisitDate % SEVEN_DAYS.value;
+        return day == FRIDAY.value || day == SATURDAY.value;
+    }
 }
