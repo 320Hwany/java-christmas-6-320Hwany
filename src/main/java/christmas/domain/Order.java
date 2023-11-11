@@ -1,11 +1,10 @@
 package christmas.domain;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static christmas.constant.ExceptionConstant.*;
+import static java.util.stream.Collectors.toList;
 
 public final class Order {
 
@@ -84,6 +83,12 @@ public final class Order {
 
     public String createPreviewFormattedMessage() {
         return expectedVisitDate.createPreviewFormattedMessage();
+    }
+
+    public List<String> createOrderingMenuMessages() {
+        return menus.stream()
+                .map(Menu::createOrderingMenuMessage)
+                .collect(toList());
     }
 
     // getter

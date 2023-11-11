@@ -25,11 +25,9 @@ public class MessagePrinter {
         String formattedMessage = order.createPreviewFormattedMessage();
         System.out.println(formattedMessage);
         System.out.println(ORDER_MENU.message);
-        List<Menu> menus = order.getMenus();
-        for (Menu menu : menus) {
-            String orderingMenuMessage = menu.createOrderingMenuMessage();
-            System.out.println(orderingMenuMessage);
-        }
+
+        List<String> orderingMenuMessages = order.createOrderingMenuMessages();
+        orderingMenuMessages.forEach(System.out::println);
     }
 
     public void printOrderTotalPrice(final int totalPrice) {
