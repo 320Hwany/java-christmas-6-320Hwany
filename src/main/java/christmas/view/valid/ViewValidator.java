@@ -41,7 +41,7 @@ public class ViewValidator {
 
         for (String menuText : orderInfo) {
             List<String> menuInfo = Arrays.asList(menuText.split(HYPHEN.value));
-            if (isCorrectForm(menuInfo)) {
+            if (isIncorrectForm(menuInfo)) {
                 throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
             }
             Menu menu = createMenu(menuInfo);
@@ -51,7 +51,7 @@ public class ViewValidator {
         return new Menus(menus);
     }
 
-    private boolean isCorrectForm(final List<String> menuInfo) {
+    private boolean isIncorrectForm(final List<String> menuInfo) {
         return menuInfo.size() != MENU_INFO_SIZE.value;
     }
 

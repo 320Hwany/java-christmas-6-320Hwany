@@ -22,6 +22,7 @@ public class DiscountManager {
             discountPrices.add(discountPrice);
         }
 
-        return new DiscountPrice(order, discountPrices);
+        int totalPrice = order.calculateTotalPrice();
+        return new DiscountPrice(totalPrice, discountPrices);
     }
 }

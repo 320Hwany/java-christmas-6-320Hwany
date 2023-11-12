@@ -2,7 +2,6 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.ExpectedVisitDate;
-import christmas.domain.Menu;
 import christmas.domain.Menus;
 import christmas.domain.Order;
 import christmas.view.valid.ViewValidator;

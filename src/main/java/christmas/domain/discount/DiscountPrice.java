@@ -1,6 +1,5 @@
 package christmas.domain.discount;
 
-import christmas.domain.Order;
 import christmas.view.DecimalFormatter;
 
 import java.util.ArrayList;
@@ -13,15 +12,15 @@ public final class DiscountPrice {
 
     private final List<Integer> discountPrices = new ArrayList<>();
 
-    public DiscountPrice(final Order order, final List<Integer> discountPrices) {
-        int giveawayPrice = applyGiveawayEvent(order);
+    public DiscountPrice(final int totalPrice, final List<Integer> discountPrices) {
+        int giveawayPrice = applyGiveawayEvent(totalPrice);
         this.discountPrices.addAll(discountPrices);
         this.discountPrices.add(giveawayPrice);
     }
 
-    private int applyGiveawayEvent(final Order order) {
+    private int applyGiveawayEvent(final int totalPrice) {
         int giveawayPrice = 0;
-        if (order.calculateTotalPrice() > 120000) {
+        if (totalPrice > 120000) {
             giveawayPrice = -25000;
         }
         return giveawayPrice;
