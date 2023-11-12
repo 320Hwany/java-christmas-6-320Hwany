@@ -4,9 +4,11 @@ import christmas.view.DecimalFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static christmas.constant.DiscountInfoConstant.*;
 import static christmas.constant.MessageConstant.*;
+import static christmas.constant.PriceConstant.*;
 
 public final class DiscountPrice {
 
@@ -18,26 +20,22 @@ public final class DiscountPrice {
         this.discountPrices.add(giveawayPrice);
     }
 
+    // validation
     private int applyGiveawayEvent(final int totalPrice) {
-        int giveawayPrice = 0;
-        if (totalPrice > 120000) {
-            giveawayPrice = -25000;
+        if (totalPrice > GIVEAWAY_CONDITION.price) {
+            return GIVEAWAY_BENEFIT.price;
         }
-        return giveawayPrice;
+
+        return ZERO_BENEFIT.price;
     }
 
+    // business
     public String createBenefitResultText(final DecimalFormatter decimalFormatter) {
         DiscountResult discountResult = new DiscountResult();
-        boolean isAddChristmasResult = isAddChristmasResult(decimalFormatter, discountResult);
-        boolean isAddWeekdayResult = isAddWeekdayResult(decimalFormatter, discountResult);
-        boolean isAddWeekendResult = isAddWeekendResult(decimalFormatter, discountResult);
-        boolean isAddSpecialResult = isAddSpecialResult(decimalFormatter, discountResult);
-        boolean isAddGiveawayResult = isAddGiveawayResult(decimalFormatter, discountResult);
+        boolean hasResults = addResults(decimalFormatter, discountResult);
 
-        if (isAddChristmasResult || isAddWeekdayResult || isAddWeekendResult
-                || isAddSpecialResult || isAddGiveawayResult) {
-            StringBuilder result = discountResult.getResult();
-            return result.toString();
+        if (hasResults) {
+            return discountResult.toString();
         }
 
         return NOTHING.message;
@@ -57,37 +55,21 @@ public final class DiscountPrice {
                 .sum();
 
         int giveawayPrice = discountPrices.get(GIVEAWAY_INDEX.value);
-
         return totalBenefitPrice - giveawayPrice;
     }
 
-    private boolean isAddChristmasResult(final DecimalFormatter decimalFormatter,
-                                          final DiscountResult discountResult) {
-        int christmasDiscount = discountPrices.get(CHRISTMAS_DISCOUNT_INDEX.value);
-        return discountResult.isAddChristmasResult(decimalFormatter, christmasDiscount);
-    }
-
-    private boolean isAddWeekdayResult(final DecimalFormatter decimalFormatter,
-                                       final DiscountResult discountResult) {
-        int weekdayDiscount = discountPrices.get(WEEKDAY_DISCOUNT_INDEX.value);
-        return discountResult.isAddWeekdayResult(decimalFormatter, weekdayDiscount);
-    }
-
-    private boolean isAddWeekendResult(final DecimalFormatter decimalFormatter,
-                                       final DiscountResult discountResult) {
-        int weekendDiscount = discountPrices.get(WEEKEND_DISCOUNT_INDEX.value);
-        return discountResult.isAddWeekendResult(decimalFormatter, weekendDiscount);
-    }
-
-    private boolean isAddSpecialResult(final DecimalFormatter decimalFormatter,
-                                       final DiscountResult discountResult) {
-        int specialDiscount = discountPrices.get(SPECIAL_DISCOUNT_INDEX.value);
-        return discountResult.isAddSpecialResult(decimalFormatter, specialDiscount);
-    }
-
-    private boolean isAddGiveawayResult(final DecimalFormatter decimalFormatter,
-                                        final DiscountResult discountResult) {
-        int giveawayPrice = discountPrices.get(GIVEAWAY_INDEX.value);
-        return discountResult.isAddGiveawayResult(decimalFormatter, giveawayPrice);
+    private boolean addResults(final DecimalFormatter decimalFormatter, final DiscountResult discountResult) {
+        return Stream.of(
+                discountResult.addChristmasResult(decimalFormatter,
+                        discountPrices.get(CHRISTMAS_DISCOUNT_INDEX.value)),
+                discountResult.addWeekdayResult(decimalFormatter,
+                        discountPrices.get(WEEKDAY_DISCOUNT_INDEX.value)),
+                discountResult.addWeekendResult(decimalFormatter,
+                        discountPrices.get(WEEKEND_DISCOUNT_INDEX.value)),
+                discountResult.addSpecialResult(decimalFormatter,
+                        discountPrices.get(SPECIAL_DISCOUNT_INDEX.value)),
+                discountResult.addGiveawayResult(decimalFormatter,
+                        discountPrices.get(GIVEAWAY_INDEX.value))
+        ).anyMatch(Boolean::booleanValue);
     }
 }

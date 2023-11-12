@@ -21,7 +21,7 @@ public final class Order {
     }
 
     public String calculateGiveaway(final int totalPrice) {
-        if (totalPrice >= GIVE_AWAY_CONDITION.price) {
+        if (totalPrice >= GIVEAWAY_CONDITION.price) {
             return GIVE_AWAY_EVENT.message;
         }
         return NOTHING.message;
