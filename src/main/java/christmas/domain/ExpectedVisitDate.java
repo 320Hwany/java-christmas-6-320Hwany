@@ -3,13 +3,14 @@ package christmas.domain;
 import static christmas.constant.DaysConstant.*;
 import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
 import static christmas.constant.MessageConstant.ORDER_EVENT_PREVIEW;
+import static christmas.constant.PriceConstant.*;
 
-public record ExpectedVisitDate(
-        int expectedVisitDate
-) {
+public final class ExpectedVisitDate {
+    private final int expectedVisitDate;
 
-    public ExpectedVisitDate {
+    public ExpectedVisitDate(final int expectedVisitDate) {
         validateExpectedDate(expectedVisitDate);
+        this.expectedVisitDate = expectedVisitDate;
     }
 
     private void validateExpectedDate(final int expectedVisitDate) {
@@ -22,11 +23,31 @@ public record ExpectedVisitDate(
         return String.format(ORDER_EVENT_PREVIEW.message, expectedVisitDate);
     }
 
-    public int calculateApplyDays() {
+    public int calculateTotalChristmasDiscount() {
+        int basicChristmasDiscount = CHRISTMAS_BASIC_DISCOUNT.price;
+        if (isNotChristmasDDay()) {
+            return ZERO_DISCOUNT.price;
+        }
+
+        int applyDays = calculateApplyDays();
+        int christmasDayDiscount = CHRISTMAS_DISCOUNT_UNIT.price * applyDays;
+
+        return basicChristmasDiscount - christmasDayDiscount;
+    }
+
+    public int calculateSpecialDayDiscount() {
+        if (isSpecialDay()) {
+            return SPECIAL_DISCOUNT.price;
+        }
+
+        return ZERO_DISCOUNT.price;
+    }
+
+    private int calculateApplyDays() {
         return expectedVisitDate - 1;
     }
 
-    public boolean isNotChristmasDDay() {
+    private boolean isNotChristmasDDay() {
         return expectedVisitDate > CHRISTMAS.value;
     }
 
@@ -40,7 +61,7 @@ public record ExpectedVisitDate(
         return day == FRIDAY.value || day == SATURDAY.value;
     }
 
-    public boolean isSpecialDay() {
+    private boolean isSpecialDay() {
         int day = expectedVisitDate % SEVEN_DAYS.value;
         return day == SPECIAL_DAY.value || expectedVisitDate == CHRISTMAS.value;
     }

@@ -28,15 +28,7 @@ public final class Order {
     }
 
     public int calculateTotalChristmasDiscount() {
-        int basicChristmasDiscount = CHRISTMAS_BASIC_DISCOUNT.price;
-        if (expectedVisitDate.isNotChristmasDDay()) {
-            return ZERO_DISCOUNT.price;
-        }
-
-        int applyDays = expectedVisitDate.calculateApplyDays();
-        int christmasDayDiscount = CHRISTMAS_DISCOUNT_UNIT.price * applyDays;
-
-        return basicChristmasDiscount - christmasDayDiscount;
+        return expectedVisitDate.calculateTotalChristmasDiscount();
     }
 
     public int calculateTotalWeekdayDiscount() {
@@ -48,11 +40,7 @@ public final class Order {
     }
 
     public int calculateSpecialDayDiscount() {
-        if (expectedVisitDate.isSpecialDay()) {
-            return SPECIAL_DISCOUNT.price;
-        }
-
-        return ZERO_DISCOUNT.price;
+        return expectedVisitDate.calculateSpecialDayDiscount();
     }
 
     public String createPreviewFormattedMessage() {
