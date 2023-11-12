@@ -43,14 +43,6 @@ public final class ExpectedVisitDate {
         return ZERO_DISCOUNT.price;
     }
 
-    private int calculateApplyDays() {
-        return expectedVisitDate - 1;
-    }
-
-    private boolean isNotChristmasDDay() {
-        return expectedVisitDate > CHRISTMAS.value;
-    }
-
     public boolean isWeekday() {
         int day = expectedVisitDate % SEVEN_DAYS.value;
         return !(day == FRIDAY.value || day == SATURDAY.value);
@@ -59,6 +51,14 @@ public final class ExpectedVisitDate {
     public boolean isWeekend() {
         int day = expectedVisitDate % SEVEN_DAYS.value;
         return day == FRIDAY.value || day == SATURDAY.value;
+    }
+
+    private int calculateApplyDays() {
+        return expectedVisitDate - 1;
+    }
+
+    private boolean isNotChristmasDDay() {
+        return expectedVisitDate > CHRISTMAS.value;
     }
 
     private boolean isSpecialDay() {

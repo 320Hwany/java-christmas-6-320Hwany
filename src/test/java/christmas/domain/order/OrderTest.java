@@ -13,23 +13,6 @@ import static org.assertj.core.api.Assertions.*;
 
 class OrderTest {
 
-    @DisplayName("입력받은 숫자가 해당 범위의 날짜가 아니면 예외가 발생한다.")
-    @Test
-    void validateExpectedDate() {
-        // given
-        String menuName1 = "양송이수프";
-        String menuName2 = "초코케이크";
-        Menu menu1 = Menu.createMenu(menuName1, 5);
-        Menu menu2 = Menu.createMenu(menuName2, 5);
-        List<Menu> menus = List.of(menu1, menu2);
-
-        int expectedVisitDate = 32;
-
-        // expected
-        assertThatThrownBy(() -> new Order(new Menus(menus), new ExpectedVisitDate(expectedVisitDate)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("주문 메뉴 수가 20개를 초과하면 예외가 발생한다.")
     @Test
     void validateMenusQuantity() {
