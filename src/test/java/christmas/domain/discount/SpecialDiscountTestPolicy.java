@@ -1,10 +1,10 @@
 package christmas.domain.discount;
 
-import christmas.domain.ExpectedVisitDate;
-import christmas.domain.Menu;
-import christmas.domain.Menus;
-import christmas.domain.Order;
-import christmas.domain.discount.policy.SpecialDiscountPolicy;
+import christmas.domain.date.ExpectedVisitDate;
+import christmas.domain.menu.Menu;
+import christmas.domain.menu.Menus;
+import christmas.domain.order.Order;
+import christmas.service.policy.SpecialDiscountPolicy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,7 @@
-package christmas.domain;
+package christmas.domain.order;
+
+import christmas.domain.date.ExpectedVisitDate;
+import christmas.domain.menu.Menus;
 
 import java.util.*;
 

@@ -1,8 +1,8 @@
 package christmas.config;
 
 import christmas.EventManager;
-import christmas.domain.discount.DiscountManager;
-import christmas.domain.discount.policy.*;
+import christmas.service.DiscountManager;
+import christmas.service.policy.*;
 import christmas.view.DecimalFormatter;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;

@@ -1,5 +1,9 @@
-package christmas.domain;
+package christmas.domain.order;
 
+import christmas.domain.date.ExpectedVisitDate;
+import christmas.domain.menu.Menu;
+import christmas.domain.menu.Menus;
+import christmas.domain.order.Order;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

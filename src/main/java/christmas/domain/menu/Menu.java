@@ -1,4 +1,6 @@
-package christmas.domain;
+package christmas.domain.menu;
+
+import christmas.domain.date.ExpectedVisitDate;
 
 import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
 import static christmas.constant.MenuInfoConstant.MINIMUM_MENU_QUANTITY;

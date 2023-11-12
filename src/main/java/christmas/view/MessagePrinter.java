@@ -1,6 +1,6 @@
 package christmas.view;
 
-import christmas.domain.Order;
+import christmas.domain.order.Order;
 import christmas.domain.discount.DiscountPrice;
 
 import java.util.List;

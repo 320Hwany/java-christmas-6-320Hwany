@@ -1,7 +1,7 @@
 package christmas.view.valid;
 
-import christmas.domain.Menu;
-import christmas.domain.Menus;
+import christmas.domain.menu.Menu;
+import christmas.domain.menu.Menus;
 
 import java.util.ArrayList;
 import java.util.Arrays;

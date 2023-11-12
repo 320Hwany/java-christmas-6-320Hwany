@@ -1,9 +1,9 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.domain.ExpectedVisitDate;
-import christmas.domain.Menus;
-import christmas.domain.Order;
+import christmas.domain.date.ExpectedVisitDate;
+import christmas.domain.menu.Menus;
+import christmas.domain.order.Order;
 import christmas.view.valid.ViewValidator;
 
 import java.util.Arrays;

@@ -1,6 +1,6 @@
-package christmas.domain;
+package christmas.domain.menu;
 
-import christmas.constant.MenuInfoConstant;
+import christmas.domain.date.ExpectedVisitDate;
 
 import java.util.List;
 

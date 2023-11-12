@@ -1,6 +1,6 @@
-package christmas.domain.discount.policy;
+package christmas.service.policy;
 
-import christmas.domain.Order;
+import christmas.domain.order.Order;
 
 public interface DiscountPolicy {
 

@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.date;
 
 import static christmas.constant.DaysConstant.*;
 import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
