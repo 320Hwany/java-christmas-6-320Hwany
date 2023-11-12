@@ -1,8 +1,7 @@
 package christmas.domain;
 
 import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
-import static christmas.constant.MenuTypeConstant.DESSERT;
-import static christmas.constant.MenuTypeConstant.MAIN_MENU;
+import static christmas.constant.MenuInfoConstant.MINIMUM_MENU_SIZE;
 import static christmas.constant.PriceConstant.*;
 import static christmas.constant.SymbolConstant.BLANK;
 import static christmas.constant.SymbolConstant.QUANTITY_UNIT;
@@ -23,12 +22,14 @@ public final class Menu {
         return new Menu(menuInfo, quantity);
     }
 
+    // validation
     private void validateQuantity(final int quantity) {
-        if (quantity < 1) {
+        if (quantity < MINIMUM_MENU_SIZE.value) {
             throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
         }
     }
 
+    // business
     public int calculatePrice() {
         return menuInfo.price * quantity;
     }
@@ -38,7 +39,7 @@ public final class Menu {
     }
 
     public int calculateWeekdayDiscount(final ExpectedVisitDate expectedVisitDate) {
-        if (menuInfo.menuType.equals(DESSERT.type) && expectedVisitDate.isWeekday()) {
+        if (menuInfo.isDessertMenuType() && expectedVisitDate.isWeekday()) {
             return WEEKDAY_DISCOUNT_UNIT.price * quantity;
         }
 
@@ -46,7 +47,7 @@ public final class Menu {
     }
 
     public int calculateWeekendDiscount(final ExpectedVisitDate expectedVisitDate) {
-        if (menuInfo.menuType.equals(MAIN_MENU.type) && expectedVisitDate.isWeekend()) {
+        if (menuInfo.isMainMenuType() && expectedVisitDate.isWeekend()) {
             return WEEKEND_DISCOUNT_UNIT.price * quantity;
         }
 
@@ -54,11 +55,7 @@ public final class Menu {
     }
 
     public boolean isNotBeverageMenu() {
-        boolean isBeverage1 = menuInfo.equals(MenuInfo.BEVERAGE_1);
-        boolean isBeverage2 = menuInfo.equals(MenuInfo.BEVERAGE_2);
-        boolean isBeverage3 = menuInfo.equals(MenuInfo.BEVERAGE_3);
-
-        return !(isBeverage1 || isBeverage2 || isBeverage3);
+        return menuInfo.isNotBeverageMenu();
     }
 
     // getter

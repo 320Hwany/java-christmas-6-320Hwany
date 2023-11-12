@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
+import static christmas.constant.MenuTypeConstant.DESSERT;
+import static christmas.constant.MenuTypeConstant.MAIN_MENU;
 
 public enum MenuInfo {
 
@@ -37,6 +39,7 @@ public enum MenuInfo {
         return validateMenuName(menuName);
     }
 
+    // validation
     private static MenuInfo validateMenuName(final String menuName) {
         List<MenuInfo> menuInfos = Arrays.asList(values());
         for (MenuInfo menuInfo : menuInfos) {
@@ -46,5 +49,22 @@ public enum MenuInfo {
         }
 
         throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
+    }
+
+    // business
+    public boolean isDessertMenuType() {
+        return menuType.equals(DESSERT.type);
+    }
+
+    public boolean isMainMenuType() {
+        return menuType.equals(MAIN_MENU.type);
+    }
+
+    public boolean isNotBeverageMenu() {
+        boolean isBeverage1 = this.equals(MenuInfo.BEVERAGE_1);
+        boolean isBeverage2 = this.equals(MenuInfo.BEVERAGE_2);
+        boolean isBeverage3 = this.equals(MenuInfo.BEVERAGE_3);
+
+        return !(isBeverage1 || isBeverage2 || isBeverage3);
     }
 }
