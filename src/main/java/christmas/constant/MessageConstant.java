@@ -21,7 +21,8 @@ public enum MessageConstant {
     EVENT_BADGE("\n<12월 이벤트 배지>"),
 
     GIVE_AWAY_EVENT("샴페인 1개"),
-    NOTHING("없음");
+    NOTHING("없음"),
+    NOTHING_LINE_BREAK("없음\n");
 
     public final String message;
 

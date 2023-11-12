@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static christmas.constant.BadgeConstant.*;
 import static christmas.constant.DiscountInfoConstant.*;
-import static christmas.constant.MessageConstant.*;
+import static christmas.constant.MessageConstant.NOTHING;
+import static christmas.constant.MessageConstant.NOTHING_LINE_BREAK;
 import static christmas.constant.PriceConstant.*;
 
 public final class DiscountPrice {
@@ -36,6 +38,20 @@ public final class DiscountPrice {
 
         if (hasResults) {
             return discountResult.toString();
+        }
+
+        return NOTHING_LINE_BREAK.message;
+    }
+
+    public String createEventBadgeText(final int totalBenefitPrice) {
+        if (totalBenefitPrice <= SANTA_BADGE_CONDITION.price) {
+            return SANTA.badge;
+        }
+        if (totalBenefitPrice <= TREE_BADGE_CONDITION.price) {
+            return TREE.badge;
+        }
+        if (totalBenefitPrice <= STAR_BADGE_CONDITION.price) {
+            return STAR.badge;
         }
 
         return NOTHING.message;
