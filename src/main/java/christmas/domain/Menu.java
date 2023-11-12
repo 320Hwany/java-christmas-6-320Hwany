@@ -1,7 +1,7 @@
 package christmas.domain;
 
 import static christmas.constant.ExceptionConstant.INVALID_ORDER_EXCEPTION;
-import static christmas.constant.MenuInfoConstant.MINIMUM_MENU_SIZE;
+import static christmas.constant.MenuInfoConstant.MINIMUM_MENU_QUANTITY;
 import static christmas.constant.PriceConstant.*;
 import static christmas.constant.SymbolConstant.BLANK;
 import static christmas.constant.SymbolConstant.QUANTITY_UNIT;
@@ -24,7 +24,7 @@ public final class Menu {
 
     // validation
     private void validateQuantity(final int quantity) {
-        if (quantity < MINIMUM_MENU_SIZE.value) {
+        if (quantity < MINIMUM_MENU_QUANTITY.value) {
             throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
         }
     }
@@ -58,12 +58,12 @@ public final class Menu {
         return menuInfo.isNotBeverageMenu();
     }
 
+    public int addQuantity(final int sum) {
+        return sum + quantity;
+    }
+
     // getter
     public String getMenuName() {
         return menuInfo.menuName;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 }

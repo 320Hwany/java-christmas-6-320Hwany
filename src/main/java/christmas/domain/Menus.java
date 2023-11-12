@@ -1,8 +1,11 @@
 package christmas.domain;
 
+import christmas.constant.MenuInfoConstant;
+
 import java.util.List;
 
 import static christmas.constant.ExceptionConstant.*;
+import static christmas.constant.MenuInfoConstant.*;
 import static christmas.constant.PriceConstant.ZERO_DISCOUNT;
 import static java.util.stream.Collectors.toList;
 
@@ -20,10 +23,10 @@ public final class Menus {
     // validation
     private void validateMenusQuantity(final List<Menu> menus) {
         int sum = menus.stream()
-                .mapToInt(Menu::getQuantity)
+                .mapToInt(menu -> menu.addQuantity(ZERO_QUANTITY.value))
                 .sum();
 
-        if (sum > 20) {
+        if (sum > MAXIMUM_MENU_QUANTITY.value) {
             throw new IllegalArgumentException(MAX_MENU_QUANTITY_EXCEPTION.message);
         }
     }
