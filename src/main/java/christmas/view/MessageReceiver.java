@@ -3,6 +3,7 @@ package christmas.view;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.ExpectedVisitDate;
 import christmas.domain.Menu;
+import christmas.domain.Menus;
 import christmas.domain.Order;
 import christmas.view.valid.ViewValidator;
 
@@ -41,7 +42,7 @@ public class MessageReceiver {
             String inputText = Console.readLine();
             try {
                 List<String> orderInfo = Arrays.asList(inputText.split(COMMA.value));
-                List<Menu> menus = viewValidator.validateOrderInfo(orderInfo);
+                Menus menus = viewValidator.validateOrderInfo(orderInfo);
                 return new Order(menus, expectedVisitDate);
             } catch (IllegalArgumentException e) {
                 viewValidator.printExceptionMessage(e);

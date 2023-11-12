@@ -2,6 +2,7 @@ package christmas.domain.discount;
 
 import christmas.domain.ExpectedVisitDate;
 import christmas.domain.Menu;
+import christmas.domain.Menus;
 import christmas.domain.Order;
 import christmas.domain.discount.policy.WeekendDiscountPolicy;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +23,7 @@ class WeekendDiscountTestPolicy {
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 5);
         List<Menu> menus = List.of(menu1, menu2);
-        Order order = new Order(menus, new ExpectedVisitDate(9));
+        Order order = new Order(new Menus(menus), new ExpectedVisitDate(9));
 
         WeekendDiscountPolicy weekendDiscount = new WeekendDiscountPolicy();
 
@@ -42,7 +43,7 @@ class WeekendDiscountTestPolicy {
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 5);
         List<Menu> menus = List.of(menu1, menu2);
-        Order order = new Order(menus, new ExpectedVisitDate(10));
+        Order order = new Order(new Menus(menus), new ExpectedVisitDate(10));
 
         WeekendDiscountPolicy weekendDiscount = new WeekendDiscountPolicy();
 

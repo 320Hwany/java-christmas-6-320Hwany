@@ -1,6 +1,7 @@
 package christmas.view.valid;
 
 import christmas.domain.Menu;
+import christmas.domain.Menus;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +36,7 @@ public class ViewValidator {
         System.out.println(exceptionMessage);
     }
 
-    public List<Menu> validateOrderInfo(final List<String> orderInfo) {
+    public Menus validateOrderInfo(final List<String> orderInfo) {
         List<Menu> menus = new ArrayList<>();
 
         for (String menuText : orderInfo) {
@@ -47,7 +48,7 @@ public class ViewValidator {
             menus.add(menu);
         }
 
-        return menus;
+        return new Menus(menus);
     }
 
     private boolean isCorrectForm(final List<String> menuInfo) {
