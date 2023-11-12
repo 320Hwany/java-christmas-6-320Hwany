@@ -85,4 +85,60 @@ class ExpectedVisitDateTest {
         // then
         assertThat(totalSpecialDayDiscount).isEqualTo(0);
     }
+
+    @DisplayName("해당 날짜가 평일이면 true를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {3, 4, 5, 6, 7})
+    void isWeekday(final int weekday) {
+        // given
+        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(weekday);
+
+        // when
+        boolean isWeekday = expectedVisitDate.isWeekday();
+
+        // then
+        assertThat(isWeekday).isTrue();
+    }
+
+    @DisplayName("해당 날짜가 평일이 아니면 false를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {8, 9})
+    void isNotWeekday(final int notWeekday) {
+        // given
+        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(notWeekday);
+
+        // when
+        boolean isWeekday = expectedVisitDate.isWeekday();
+
+        // then
+        assertThat(isWeekday).isFalse();
+    }
+
+    @DisplayName("해당 날짜가 주말이면 true를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {8, 9})
+    void isWeekend(final int weekend) {
+        // given
+        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(weekend);
+
+        // when
+        boolean isWeekend = expectedVisitDate.isWeekend();
+
+        // then
+        assertThat(isWeekend).isTrue();
+    }
+
+    @DisplayName("해당 날짜가 주말이 아니면 false를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {3, 4, 5, 6, 7})
+    void isNotWeekend(final int notWeekend) {
+        // given
+        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(notWeekend);
+
+        // when
+        boolean isWeekend = expectedVisitDate.isWeekend();
+
+        // then
+        assertThat(isWeekend).isFalse();
+    }
 }
