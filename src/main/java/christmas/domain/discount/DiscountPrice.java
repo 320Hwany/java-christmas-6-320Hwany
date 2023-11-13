@@ -20,7 +20,7 @@ public final class DiscountPrice {
     }
 
     private int applyGiveawayEvent(final int totalPrice) {
-        if (totalPrice > GIVEAWAY_CONDITION.price) {
+        if (totalPrice >= GIVEAWAY_CONDITION.price) {
             return GIVEAWAY_BENEFIT.price;
         }
 
