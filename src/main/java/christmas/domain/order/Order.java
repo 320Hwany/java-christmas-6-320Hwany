@@ -14,11 +14,16 @@ public final class Order {
     private final Menus menus;
     private final ExpectedVisitDate expectedVisitDate;
 
-    public Order(final Menus menus, final ExpectedVisitDate expectedVisitDate) {
+    private Order(final Menus menus, final ExpectedVisitDate expectedVisitDate) {
         this.menus = menus;
         this.expectedVisitDate = expectedVisitDate;
     }
 
+    public static Order of(final Menus menus, final ExpectedVisitDate expectedVisitDate) {
+        return new Order(menus, expectedVisitDate);
+    }
+
+    // business
     public int calculateTotalPrice() {
         return menus.calculateTotalPrice();
     }

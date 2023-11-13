@@ -28,7 +28,7 @@ class OrderTest {
         // given 2
         int day = 10;
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(day);
-        Order order = new Order(menus, expectedVisitDate);
+        Order order = Order.of(menus, expectedVisitDate);
 
         // when
         int totalPrice = order.calculateTotalPrice();
@@ -43,7 +43,7 @@ class OrderTest {
         // given
         String menuName = "양송이수프";
         Menu menu1 = Menu.createMenu(menuName, 3);
-        Order order = new Order(Menus.from(List.of(menu1)), ExpectedVisitDate.from(10));
+        Order order = Order.of(Menus.from(List.of(menu1)), ExpectedVisitDate.from(10));
 
         int totalPrice1 = 120000;
         int totalPrice2 = 119999;
@@ -70,7 +70,7 @@ class OrderTest {
         // given 2
         int christmasDay = 25;
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(christmasDay);
-        Order order = new Order(menus, expectedVisitDate);
+        Order order = Order.of(menus, expectedVisitDate);
 
         // when
         int totalChristmasDiscount = order.calculateTotalChristmasDiscount();
@@ -92,7 +92,7 @@ class OrderTest {
         // given 2
         int weekday = 3;
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekday);
-        Order order = new Order(menus, expectedVisitDate);
+        Order order = Order.of(menus, expectedVisitDate);
 
         // when
         int totalWeekdayDiscount = order.calculateTotalWeekdayDiscount();
@@ -114,7 +114,7 @@ class OrderTest {
         // given 2
         int weekend = 2;
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekend);
-        Order order = new Order(menus, expectedVisitDate);
+        Order order = Order.of(menus, expectedVisitDate);
 
         // when
         int totalWeekdayDiscount = order.calculateTotalWeekendDiscount();
@@ -136,7 +136,7 @@ class OrderTest {
 
         // given 2
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(specialDay);
-        Order order = new Order(menus, expectedVisitDate);
+        Order order = Order.of(menus, expectedVisitDate);
 
         // when
         int totalSpecialDayDiscount = order.calculateSpecialDayDiscount();
@@ -158,7 +158,7 @@ class OrderTest {
 
         // given 2
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(specialDay);
-        Order order = new Order(menus, expectedVisitDate);
+        Order order = Order.of(menus, expectedVisitDate);
 
         // when
         int totalSpecialDayDiscount = order.calculateSpecialDayDiscount();

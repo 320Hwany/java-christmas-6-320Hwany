@@ -42,7 +42,7 @@ public class MessageReceiver {
             try {
                 List<String> orderInfo = Arrays.asList(inputText.split(COMMA.value));
                 Menus menus = viewValidator.validateOrderInfo(orderInfo);
-                return new Order(menus, expectedVisitDate);
+                return Order.of(menus, expectedVisitDate);
             } catch (IllegalArgumentException e) {
                 viewValidator.printExceptionMessage(e);
             }
