@@ -38,7 +38,7 @@ public class MessageReceiver {
     }
 
     private <T> T receiveInput(final InputValidation<T> inputValidation) {
-        do {
+        while (true) {
             String inputText = Console.readLine();
             try {
                 return inputValidation.validateInput(inputText, viewValidator);
@@ -47,6 +47,6 @@ public class MessageReceiver {
                 String exceptionMessage = e.getMessage();
                 System.out.println(exceptionMessage);
             }
-        } while (true);
+        }
     }
 }
