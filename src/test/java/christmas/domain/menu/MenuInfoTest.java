@@ -1,8 +1,8 @@
 package christmas.domain.menu;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
@@ -10,13 +10,11 @@ import static org.assertj.core.api.Assertions.*;
 class MenuInfoTest {
 
     @DisplayName("메뉴판에 없는 메뉴 이름을 입력하면 예외가 발생한다.")
-    @Test
-    void createMenuInfoFailByMenuName() {
-        // given
-        String menuName = "주문에 없는 메뉴";
-
+    @ParameterizedTest
+    @CsvSource({"주문에 없는 메뉴"})
+    void createMenuInfoFailByMenuName(final String notExistMenuName) {
         // expected
-        assertThatThrownBy(() -> MenuInfo.from(menuName))
+        assertThatThrownBy(() -> MenuInfo.from(notExistMenuName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
