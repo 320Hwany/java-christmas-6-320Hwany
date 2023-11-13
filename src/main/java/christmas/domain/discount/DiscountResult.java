@@ -1,6 +1,6 @@
 package christmas.domain.discount;
 
-import christmas.view.DecimalFormatter;
+import christmas.view.PriceFormatter;
 
 import static christmas.constant.MessageConstant.*;
 import static christmas.constant.PriceConstant.ZERO_DISCOUNT;
@@ -14,25 +14,25 @@ public final class DiscountResult {
         this.result = new StringBuilder();
     }
 
-    public boolean addChristmasResult(final DecimalFormatter decimalFormatter, final int christmasDiscount) {
-        return addDiscountResult(decimalFormatter, christmasDiscount, CHRISTMAS_DISCOUNT.message);
+    public boolean addChristmasResult(final int christmasDiscount) {
+        return addDiscountResult(christmasDiscount, CHRISTMAS_DISCOUNT.message);
     }
 
-    public boolean addWeekdayResult(final DecimalFormatter decimalFormatter, final int weekdayDiscount) {
-        return addDiscountResult(decimalFormatter, weekdayDiscount, WEEKDAY_DISCOUNT.message);
+    public boolean addWeekdayResult(final int weekdayDiscount) {
+        return addDiscountResult(weekdayDiscount, WEEKDAY_DISCOUNT.message);
     }
 
-    public boolean addWeekendResult(final DecimalFormatter decimalFormatter, final int weekendDiscount) {
-        return addDiscountResult(decimalFormatter, weekendDiscount, WEEKEND_DISCOUNT.message);
+    public boolean addWeekendResult(final int weekendDiscount) {
+        return addDiscountResult(weekendDiscount, WEEKEND_DISCOUNT.message);
     }
 
-    public boolean addSpecialResult(final DecimalFormatter decimalFormatter, final int specialDiscount) {
-        return addDiscountResult(decimalFormatter, specialDiscount, SPECIAL_DISCOUNT.message);
+    public boolean addSpecialResult(final int specialDiscount) {
+        return addDiscountResult(specialDiscount, SPECIAL_DISCOUNT.message);
     }
 
-    public boolean addGiveawayResult(final DecimalFormatter decimalFormatter, final int giveawayPrice) {
+    public boolean addGiveawayResult(final int giveawayPrice) {
         if (giveawayPrice != ZERO_DISCOUNT.price) {
-            String formattedGiveawayPrice = decimalFormatter.createFormattedMessage(giveawayPrice);
+            String formattedGiveawayPrice = PriceFormatter.createFormattedMessage(giveawayPrice);
             result.append(GIVEAWAY_EVENT.message)
                     .append(formattedGiveawayPrice)
                     .append(PRICE_UNIT_LINE_BREAK.value);
@@ -41,10 +41,9 @@ public final class DiscountResult {
         return false;
     }
 
-    private boolean addDiscountResult(final DecimalFormatter decimalFormatter, final int discount,
-                                      final String discountMessage) {
+    private boolean addDiscountResult(final int discount, final String discountMessage) {
         if (discount < ZERO_DISCOUNT.price) {
-            String formattedDiscountMessage = decimalFormatter.createFormattedMessage(discount);
+            String formattedDiscountMessage = PriceFormatter.createFormattedMessage(discount);
             result.append(discountMessage)
                     .append(formattedDiscountMessage)
                     .append(PRICE_UNIT_LINE_BREAK.value);

@@ -3,7 +3,6 @@ package christmas.config;
 import christmas.EventManager;
 import christmas.service.policy.DiscountPolicyManager;
 import christmas.service.policy.*;
-import christmas.view.DecimalFormatter;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
 import christmas.view.valid.ViewValidator;
@@ -21,7 +20,7 @@ public class EventConfig {
     }
 
     private static MessagePrinter messagePrinter() {
-        return new MessagePrinter(decimalFormatter());
+        return new MessagePrinter();
     }
 
     private static MessageReceiver messageReceiver() {
@@ -30,10 +29,6 @@ public class EventConfig {
 
     private static ViewValidator viewValidator() {
         return new ViewValidator();
-    }
-
-    private static DecimalFormatter decimalFormatter() {
-        return new DecimalFormatter();
     }
 
     private static DiscountPolicyManager discountManager() {

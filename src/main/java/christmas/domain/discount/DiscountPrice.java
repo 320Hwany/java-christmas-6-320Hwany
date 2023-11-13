@@ -1,8 +1,5 @@
 package christmas.domain.discount;
 
-import christmas.view.DecimalFormatter;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -31,9 +28,9 @@ public final class DiscountPrice {
     }
 
     // business
-    public String createBenefitResultText(final DecimalFormatter decimalFormatter) {
+    public String createBenefitResultText() {
         DiscountResult discountResult = new DiscountResult();
-        boolean hasResults = addResults(decimalFormatter, discountResult);
+        boolean hasResults = addResults(discountResult);
 
         if (hasResults) {
             return discountResult.toString();
@@ -73,18 +70,13 @@ public final class DiscountPrice {
         return totalBenefitPrice - giveawayPrice;
     }
 
-    private boolean addResults(final DecimalFormatter decimalFormatter, final DiscountResult discountResult) {
+    private boolean addResults(final DiscountResult discountResult) {
         return Stream.of(
-                discountResult.addChristmasResult(decimalFormatter,
-                        discountPrices.get(CHRISTMAS_DISCOUNT_INDEX.value)),
-                discountResult.addWeekdayResult(decimalFormatter,
-                        discountPrices.get(WEEKDAY_DISCOUNT_INDEX.value)),
-                discountResult.addWeekendResult(decimalFormatter,
-                        discountPrices.get(WEEKEND_DISCOUNT_INDEX.value)),
-                discountResult.addSpecialResult(decimalFormatter,
-                        discountPrices.get(SPECIAL_DISCOUNT_INDEX.value)),
-                discountResult.addGiveawayResult(decimalFormatter,
-                        discountPrices.get(GIVEAWAY_INDEX.value))
+                discountResult.addChristmasResult(discountPrices.get(CHRISTMAS_DISCOUNT_INDEX.value)),
+                discountResult.addWeekdayResult(discountPrices.get(WEEKDAY_DISCOUNT_INDEX.value)),
+                discountResult.addWeekendResult(discountPrices.get(WEEKEND_DISCOUNT_INDEX.value)),
+                discountResult.addSpecialResult(discountPrices.get(SPECIAL_DISCOUNT_INDEX.value)),
+                discountResult.addGiveawayResult(discountPrices.get(GIVEAWAY_INDEX.value))
         ).anyMatch(Boolean::booleanValue);
     }
 }
