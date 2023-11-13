@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static christmas.constant.ExceptionConstant.*;
-import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
 import static christmas.constant.MenuInfoConstant.*;
 import static christmas.constant.SymbolConstant.*;
 
@@ -21,11 +20,6 @@ public class ViewValidator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(exceptionMessage);
         }
-    }
-
-    public void printExceptionMessage(final IllegalArgumentException e) {
-        String exceptionMessage = e.getMessage();
-        System.out.println(exceptionMessage);
     }
 
     public Menus validateOrderInfo(final List<String> orderInfo) {

@@ -8,6 +8,8 @@ import christmas.service.implement.WeekdayDiscountPolicy;
 import christmas.service.implement.WeekendDiscountPolicy;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
+import christmas.view.valid.ExpectedVisitDateValidation;
+import christmas.view.valid.MenusValidation;
 import christmas.view.valid.ViewValidator;
 
 import java.util.ArrayList;
@@ -27,11 +29,19 @@ public class EventConfig {
     }
 
     private static MessageReceiver messageReceiver() {
-        return new MessageReceiver(viewValidator());
+        return new MessageReceiver(viewValidator(), expectedVisitDateValidation(), menusValidation());
     }
 
     private static ViewValidator viewValidator() {
         return new ViewValidator();
+    }
+
+    private static ExpectedVisitDateValidation expectedVisitDateValidation() {
+        return new ExpectedVisitDateValidation();
+    }
+
+    private static MenusValidation menusValidation() {
+        return new MenusValidation();
     }
 
     private static DiscountPolicyManager discountManager() {

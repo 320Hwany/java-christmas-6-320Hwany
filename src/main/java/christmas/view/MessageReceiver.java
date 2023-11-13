@@ -4,48 +4,48 @@ import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.date.ExpectedVisitDate;
 import christmas.domain.menu.Menus;
 import christmas.domain.order.Order;
+import christmas.view.valid.ExpectedVisitDateValidation;
+import christmas.view.valid.InputValidation;
+import christmas.view.valid.MenusValidation;
 import christmas.view.valid.ViewValidator;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
 import static christmas.constant.MessageConstant.*;
-import static christmas.constant.SymbolConstant.*;
 
 public class MessageReceiver {
 
     private final ViewValidator viewValidator;
+    private final ExpectedVisitDateValidation expectedVisitDateValidation;
+    private final MenusValidation menusValidation;
 
-    public MessageReceiver(final ViewValidator viewValidator) {
+    public MessageReceiver(final ViewValidator viewValidator,
+                           final ExpectedVisitDateValidation expectedVisitDateValidation,
+                           final MenusValidation menusValidation) {
         this.viewValidator = viewValidator;
+        this.expectedVisitDateValidation = expectedVisitDateValidation;
+        this.menusValidation = menusValidation;
     }
 
     public ExpectedVisitDate receiveExpectedVisitDate() {
         System.out.println(EXPECTED_VISIT_DATE.message);
-
-        do {
-            String inputText = Console.readLine();
-            try {
-                int inputNumber = viewValidator.parseInt(inputText, EXPECTED_DATE_EXCEPTION.message);
-                return ExpectedVisitDate.from(inputNumber);
-            } catch (IllegalArgumentException e) {
-                viewValidator.printExceptionMessage(e);
-            }
-        } while (true);
+        return receiveInput(expectedVisitDateValidation);
     }
 
     public Order receiveOrder(final ExpectedVisitDate expectedVisitDate) {
         System.out.println(ORDER_INFO.message);
+        Menus menus = receiveInput(menusValidation);
 
+        return Order.of(menus, expectedVisitDate);
+    }
+
+    private <T> T receiveInput(final InputValidation<T> inputValidation) {
         do {
             String inputText = Console.readLine();
             try {
-                List<String> orderInfo = Arrays.asList(inputText.split(COMMA.value));
-                Menus menus = viewValidator.validateOrderInfo(orderInfo);
-                return Order.of(menus, expectedVisitDate);
+                return inputValidation.validateInput(inputText, viewValidator);
+
             } catch (IllegalArgumentException e) {
-                viewValidator.printExceptionMessage(e);
+                String exceptionMessage = e.getMessage();
+                System.out.println(exceptionMessage);
             }
         } while (true);
     }
