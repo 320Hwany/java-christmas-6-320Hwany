@@ -6,19 +6,26 @@ import static christmas.constant.MessageConstant.ORDER_EVENT_PREVIEW;
 import static christmas.constant.PriceConstant.*;
 
 public final class ExpectedVisitDate {
+
     private final int expectedVisitDate;
 
-    public ExpectedVisitDate(final int expectedVisitDate) {
+    private ExpectedVisitDate(final int expectedVisitDate) {
         validateExpectedDate(expectedVisitDate);
         this.expectedVisitDate = expectedVisitDate;
     }
 
+    public static ExpectedVisitDate from(final int expectedVisitDate) {
+        return new ExpectedVisitDate(expectedVisitDate);
+    }
+
+    // validation
     private void validateExpectedDate(final int expectedVisitDate) {
         if (expectedVisitDate < DECEMBER_START_DAY.value || expectedVisitDate > DECEMBER_END_DAY.value) {
             throw new IllegalArgumentException(EXPECTED_DATE_EXCEPTION.message);
         }
     }
 
+    // business
     public String createPreviewFormattedMessage() {
         return String.format(ORDER_EVENT_PREVIEW.message, expectedVisitDate);
     }
@@ -54,7 +61,7 @@ public final class ExpectedVisitDate {
     }
 
     private int calculateApplyDays() {
-        return expectedVisitDate - 1;
+        return expectedVisitDate - ONE_DAY.value;
     }
 
     private boolean isNotChristmasDDay() {

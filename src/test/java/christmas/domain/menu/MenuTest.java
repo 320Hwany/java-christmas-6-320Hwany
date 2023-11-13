@@ -56,8 +56,8 @@ class MenuTest {
         Menu menu = Menu.createMenu("초코케이크", 5);
         int weekday = 3;
         int weekend = 2;
-        ExpectedVisitDate expectedVisitDate1 = new ExpectedVisitDate(weekday);
-        ExpectedVisitDate expectedVisitDate2 = new ExpectedVisitDate(weekend);
+        ExpectedVisitDate expectedVisitDate1 = ExpectedVisitDate.from(weekday);
+        ExpectedVisitDate expectedVisitDate2 = ExpectedVisitDate.from(weekend);
 
         // when
         int weekdayDiscount1 = menu.calculateWeekdayDiscount(expectedVisitDate1);

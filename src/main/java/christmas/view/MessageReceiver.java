@@ -27,7 +27,7 @@ public class MessageReceiver {
             String inputText = Console.readLine();
             try {
                 int inputNumber = viewValidator.parseIntExpectedDate(inputText);
-                return new ExpectedVisitDate(inputNumber);
+                return ExpectedVisitDate.from(inputNumber);
             } catch (IllegalArgumentException e) {
                 viewValidator.printExceptionMessage(e);
             }

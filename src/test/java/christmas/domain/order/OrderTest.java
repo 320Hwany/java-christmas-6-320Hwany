@@ -27,7 +27,7 @@ class OrderTest {
 
         // given 2
         int day = 10;
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(day);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(day);
         Order order = new Order(menus, expectedVisitDate);
 
         // when
@@ -43,7 +43,7 @@ class OrderTest {
         // given
         String menuName = "양송이수프";
         Menu menu1 = Menu.createMenu(menuName, 3);
-        Order order = new Order(new Menus(List.of(menu1)), new ExpectedVisitDate(10));
+        Order order = new Order(new Menus(List.of(menu1)), ExpectedVisitDate.from(10));
 
         int totalPrice1 = 120000;
         int totalPrice2 = 119999;
@@ -69,7 +69,7 @@ class OrderTest {
 
         // given 2
         int christmasDay = 25;
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(christmasDay);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(christmasDay);
         Order order = new Order(menus, expectedVisitDate);
 
         // when
@@ -91,7 +91,7 @@ class OrderTest {
 
         // given 2
         int weekday = 3;
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(weekday);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekday);
         Order order = new Order(menus, expectedVisitDate);
 
         // when
@@ -113,7 +113,7 @@ class OrderTest {
 
         // given 2
         int weekend = 2;
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(weekend);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekend);
         Order order = new Order(menus, expectedVisitDate);
 
         // when
@@ -135,7 +135,7 @@ class OrderTest {
         Menus menus = new Menus(List.of(menu1, menu2));
 
         // given 2
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(specialDay);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(specialDay);
         Order order = new Order(menus, expectedVisitDate);
 
         // when
@@ -157,7 +157,7 @@ class OrderTest {
         Menus menus = new Menus(List.of(menu1, menu2));
 
         // given 2
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(specialDay);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(specialDay);
         Order order = new Order(menus, expectedVisitDate);
 
         // when

@@ -101,7 +101,7 @@ class MenusTest {
 
         // given 2
         int weekday = 3;
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(weekday);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekday);
 
         // when
         int totalWeekdayDiscount = menus.calculateTotalWeekdayDiscount(expectedVisitDate);
@@ -122,7 +122,7 @@ class MenusTest {
 
         // given 2
         int weekend = 2;
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(weekend);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekend);
 
         // when
         int totalWeekdayDiscount = menus.calculateTotalWeekendDiscount(expectedVisitDate);

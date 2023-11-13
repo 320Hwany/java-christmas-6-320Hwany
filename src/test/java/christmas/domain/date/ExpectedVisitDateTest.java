@@ -15,7 +15,7 @@ class ExpectedVisitDateTest {
     @ValueSource(ints = {1, 31})
     void validateExpectedDateSuccess(final int validDay) {
         // when
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(validDay);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(validDay);
 
         // then
         assertThat(expectedVisitDate).isNotNull();
@@ -26,7 +26,7 @@ class ExpectedVisitDateTest {
     @ValueSource(ints = {0, 32})
     void validateExpectedDateFail(final int invalidDay) {
         // expected
-        assertThatThrownBy(() -> new ExpectedVisitDate(invalidDay))
+        assertThatThrownBy(() -> ExpectedVisitDate.from(invalidDay))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,7 +35,7 @@ class ExpectedVisitDateTest {
     void calculateTotalChristmasDiscount() {
         // given
         int christmasDay = 25;
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(christmasDay);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(christmasDay);
 
         // when
         int totalChristmasDiscount = expectedVisitDate.calculateTotalChristmasDiscount();
@@ -49,7 +49,7 @@ class ExpectedVisitDateTest {
     void calculateTotalChristmasDiscountNotApply() {
         // given
         int afterChristmasDay = 26;
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(afterChristmasDay);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(afterChristmasDay);
 
         // when
         int totalChristmasDiscount = expectedVisitDate.calculateTotalChristmasDiscount();
@@ -63,7 +63,7 @@ class ExpectedVisitDateTest {
     @ValueSource(ints = {3, 10, 17, 24, 25, 31})
     void calculateSpecialDayDiscount(final int specialDay) {
         // given
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(specialDay);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(specialDay);
 
         // when
         int totalSpecialDayDiscount = expectedVisitDate.calculateSpecialDayDiscount();
@@ -77,7 +77,7 @@ class ExpectedVisitDateTest {
     @ValueSource(ints = {2, 11, 16, 23, 26, 30})
     void calculateSpecialDayDiscountNotApply(final int notSpecialDay) {
         // given
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(notSpecialDay);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(notSpecialDay);
 
         // when
         int totalSpecialDayDiscount = expectedVisitDate.calculateSpecialDayDiscount();
@@ -91,7 +91,7 @@ class ExpectedVisitDateTest {
     @ValueSource(ints = {3, 4, 5, 6, 7})
     void isWeekday(final int weekday) {
         // given
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(weekday);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekday);
 
         // when
         boolean isWeekday = expectedVisitDate.isWeekday();
@@ -105,7 +105,7 @@ class ExpectedVisitDateTest {
     @ValueSource(ints = {8, 9})
     void isNotWeekday(final int notWeekday) {
         // given
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(notWeekday);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(notWeekday);
 
         // when
         boolean isWeekday = expectedVisitDate.isWeekday();
@@ -119,7 +119,7 @@ class ExpectedVisitDateTest {
     @ValueSource(ints = {8, 9})
     void isWeekend(final int weekend) {
         // given
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(weekend);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekend);
 
         // when
         boolean isWeekend = expectedVisitDate.isWeekend();
@@ -133,7 +133,7 @@ class ExpectedVisitDateTest {
     @ValueSource(ints = {3, 4, 5, 6, 7})
     void isNotWeekend(final int notWeekend) {
         // given
-        ExpectedVisitDate expectedVisitDate = new ExpectedVisitDate(notWeekend);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(notWeekend);
 
         // when
         boolean isWeekend = expectedVisitDate.isWeekend();
