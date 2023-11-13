@@ -13,8 +13,8 @@ class DiscountResultTest {
     @CsvSource({"-1, 0"})
     void addChristmasResult(final int christmasDiscount1, final int christmasDiscount2) {
         // given
-        DiscountResult discountResult1 = new DiscountResult();
-        DiscountResult discountResult2 = new DiscountResult();
+        DiscountResult discountResult1 = DiscountResult.initializeDiscountResult();
+        DiscountResult discountResult2 = DiscountResult.initializeDiscountResult();
 
         // when
         boolean result1 = discountResult1.addChristmasResult(christmasDiscount1);
@@ -30,8 +30,8 @@ class DiscountResultTest {
     @CsvSource({"-1, 0"})
     void addWeekdayResult(final int weekdayDiscount1, final int weekdayDiscount2) {
         // given
-        DiscountResult discountResult1 = new DiscountResult();
-        DiscountResult discountResult2 = new DiscountResult();
+        DiscountResult discountResult1 = DiscountResult.initializeDiscountResult();
+        DiscountResult discountResult2 = DiscountResult.initializeDiscountResult();
 
         // when
         boolean result1 = discountResult1.addWeekdayResult(weekdayDiscount1);
@@ -47,8 +47,8 @@ class DiscountResultTest {
     @CsvSource({"-1, 0"})
     void addWeekendResult(final int weekendDiscount1, final int weekendDiscount2) {
         // given
-        DiscountResult discountResult1 = new DiscountResult();
-        DiscountResult discountResult2 = new DiscountResult();
+        DiscountResult discountResult1 = DiscountResult.initializeDiscountResult();
+        DiscountResult discountResult2 = DiscountResult.initializeDiscountResult();
 
         // when
         boolean result1 = discountResult1.addWeekendResult(weekendDiscount1);
@@ -64,8 +64,8 @@ class DiscountResultTest {
     @CsvSource({"-1, 0"})
     void addSpecialResult(final int specialDiscount1, final int specialDiscount2) {
         // given
-        DiscountResult discountResult1 = new DiscountResult();
-        DiscountResult discountResult2 = new DiscountResult();
+        DiscountResult discountResult1 = DiscountResult.initializeDiscountResult();
+        DiscountResult discountResult2 = DiscountResult.initializeDiscountResult();
 
         // when
         boolean result1 = discountResult1.addWeekendResult(specialDiscount1);
@@ -81,8 +81,8 @@ class DiscountResultTest {
     @CsvSource({"-1, 0"})
     void addGiveawayResult(final int giveawayPrice1, final int giveawayPrice2) {
         // given
-        DiscountResult discountResult1 = new DiscountResult();
-        DiscountResult discountResult2 = new DiscountResult();
+        DiscountResult discountResult1 = DiscountResult.initializeDiscountResult();
+        DiscountResult discountResult2 = DiscountResult.initializeDiscountResult();
 
         // when
         boolean result1 = discountResult1.addGiveawayResult(giveawayPrice1);

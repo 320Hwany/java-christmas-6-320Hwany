@@ -10,8 +10,12 @@ public final class DiscountResult {
 
     private final StringBuilder result;
 
-    public DiscountResult() {
+    private DiscountResult() {
         this.result = new StringBuilder();
+    }
+
+    public static DiscountResult initializeDiscountResult() {
+        return new DiscountResult();
     }
 
     public boolean addChristmasResult(final int christmasDiscount) {

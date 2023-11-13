@@ -33,7 +33,7 @@ public final class DiscountPrice {
 
     // business
     public String createBenefitResultText() {
-        DiscountResult discountResult = new DiscountResult();
+        DiscountResult discountResult = DiscountResult.initializeDiscountResult();
         boolean hasResults = addResults(discountResult);
 
         if (hasResults) {
