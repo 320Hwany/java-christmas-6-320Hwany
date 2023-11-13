@@ -20,7 +20,7 @@ public final class Menu {
     }
 
     public static Menu createMenu(final String menuName, final int quantity) {
-        MenuInfo menuInfo = MenuInfo.createMenuInfo(menuName);
+        MenuInfo menuInfo = MenuInfo.from(menuName);
         return new Menu(menuInfo, quantity);
     }
 

@@ -1,6 +1,5 @@
 package christmas.domain.menu;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +16,7 @@ class MenuInfoTest {
         String menuName = "주문에 없는 메뉴";
 
         // expected
-        assertThatThrownBy(() -> MenuInfo.createMenuInfo(menuName))
+        assertThatThrownBy(() -> MenuInfo.from(menuName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -26,7 +25,7 @@ class MenuInfoTest {
     @ValueSource(strings = {"양송이수프", "티본스테이크", "초코케이크", "제로콜라"})
     void validateExpectedDateSuccess(final String menuName) {
         // when
-        MenuInfo menuInfo = MenuInfo.createMenuInfo(menuName);
+        MenuInfo menuInfo = MenuInfo.from(menuName);
 
         // then
         assertThat(menuInfo).isNotNull();
@@ -37,7 +36,7 @@ class MenuInfoTest {
     @ValueSource(strings = {"초코케이크", "아이스크림"})
     void isDessertMenuTypeTrue(final String menuName) {
         // given
-        MenuInfo menuInfo = MenuInfo.createMenuInfo(menuName);
+        MenuInfo menuInfo = MenuInfo.from(menuName);
 
         // when
         boolean isDessertMenuType = menuInfo.isDessertMenuType();
@@ -51,7 +50,7 @@ class MenuInfoTest {
     @ValueSource(strings = {"크리스마스파스타", "제로콜라"})
     void isDessertMenuTypeFalse(final String menuName) {
         // given
-        MenuInfo menuInfo = MenuInfo.createMenuInfo(menuName);
+        MenuInfo menuInfo = MenuInfo.from(menuName);
 
         // when
         boolean isDessertMenuType = menuInfo.isDessertMenuType();
@@ -65,7 +64,7 @@ class MenuInfoTest {
     @ValueSource(strings = {"티본스테이크", "바비큐립", "해산물파스타", "크리스마스파스타"})
     void isMainMenuTypeTrue(final String menuName) {
         // given
-        MenuInfo menuInfo = MenuInfo.createMenuInfo(menuName);
+        MenuInfo menuInfo = MenuInfo.from(menuName);
 
         // when
         boolean isMainMenuType = menuInfo.isMainMenuType();
@@ -79,7 +78,7 @@ class MenuInfoTest {
     @ValueSource(strings = {"시저샐러드", "초코케이크"})
     void isMainMenuTypeFalse(final String menuName) {
         // given
-        MenuInfo menuInfo = MenuInfo.createMenuInfo(menuName);
+        MenuInfo menuInfo = MenuInfo.from(menuName);
 
         // when
         boolean isMainMenuType = menuInfo.isMainMenuType();
@@ -93,7 +92,7 @@ class MenuInfoTest {
     @ValueSource(strings = {"아이스크림", "양송이수프"})
     void isNotBeverageMenuTrue(final String menuName) {
         // given
-        MenuInfo menuInfo = MenuInfo.createMenuInfo(menuName);
+        MenuInfo menuInfo = MenuInfo.from(menuName);
 
         // when
         boolean isNotBeverageMenu = menuInfo.isNotBeverageMenu();
@@ -107,7 +106,7 @@ class MenuInfoTest {
     @ValueSource(strings = {"제로콜라", "레드와인", "샴페인"})
     void isNotBeverageMenuFalse(final String menuName) {
         // given
-        MenuInfo menuInfo = MenuInfo.createMenuInfo(menuName);
+        MenuInfo menuInfo = MenuInfo.from(menuName);
 
         // when
         boolean isNotBeverageMenu = menuInfo.isNotBeverageMenu();

@@ -35,7 +35,7 @@ public enum MenuInfo {
         this.price = price;
     }
 
-    public static MenuInfo createMenuInfo(final String menuName) {
+    public static MenuInfo from(final String menuName) {
         return validateMenuName(menuName);
     }
 
