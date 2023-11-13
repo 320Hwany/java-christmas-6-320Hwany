@@ -1,4 +1,4 @@
-package christmas.service;
+package christmas.domain.discount;
 
 import christmas.view.DecimalFormatter;
 
@@ -12,13 +12,13 @@ import static christmas.constant.MessageConstant.NOTHING;
 import static christmas.constant.MessageConstant.NOTHING_LINE_BREAK;
 import static christmas.constant.PriceConstant.*;
 
-public class DiscountPrice {
+public final class DiscountPrice {
 
-    private final List<Integer> discountPrices = new ArrayList<>();
+    private final List<Integer> discountPrices;
 
     public DiscountPrice(final int totalPrice, final List<Integer> discountPrices) {
         int giveawayPrice = applyGiveawayEvent(totalPrice);
-        this.discountPrices.addAll(discountPrices);
+        this.discountPrices = discountPrices;
         this.discountPrices.add(giveawayPrice);
     }
 

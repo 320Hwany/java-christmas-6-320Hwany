@@ -1,7 +1,7 @@
 package christmas.service.policy;
 
 import christmas.domain.order.Order;
-import christmas.service.DiscountPrice;
+import christmas.domain.discount.DiscountPrice;
 
 import java.util.ArrayList;
 import java.util.List;

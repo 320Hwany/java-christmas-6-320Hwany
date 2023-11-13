@@ -2,7 +2,7 @@ package christmas;
 
 import christmas.domain.date.ExpectedVisitDate;
 import christmas.service.policy.DiscountPolicyManager;
-import christmas.service.DiscountPrice;
+import christmas.domain.discount.DiscountPrice;
 import christmas.domain.order.Order;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
