@@ -1,4 +1,4 @@
-package christmas.service.policy;
+package christmas.service;
 
 import christmas.domain.order.Order;
 import christmas.domain.discount.DiscountPrice;

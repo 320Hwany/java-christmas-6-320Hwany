@@ -1,6 +1,7 @@
-package christmas.service.policy;
+package christmas.service.implement;
 
 import christmas.domain.order.Order;
+import christmas.service.DiscountPolicy;
 
 
 public class SpecialDiscountPolicy implements DiscountPolicy {

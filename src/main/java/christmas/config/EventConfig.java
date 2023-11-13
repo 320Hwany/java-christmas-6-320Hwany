@@ -1,8 +1,11 @@
 package christmas.config;
 
 import christmas.EventManager;
-import christmas.service.policy.DiscountPolicyManager;
-import christmas.service.policy.*;
+import christmas.service.*;
+import christmas.service.implement.ChristmasDiscountPolicy;
+import christmas.service.implement.SpecialDiscountPolicy;
+import christmas.service.implement.WeekdayDiscountPolicy;
+import christmas.service.implement.WeekendDiscountPolicy;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
 import christmas.view.valid.ViewValidator;

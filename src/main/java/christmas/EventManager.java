@@ -1,7 +1,7 @@
 package christmas;
 
 import christmas.domain.date.ExpectedVisitDate;
-import christmas.service.policy.DiscountPolicyManager;
+import christmas.service.DiscountPolicyManager;
 import christmas.domain.discount.DiscountPrice;
 import christmas.domain.order.Order;
 import christmas.view.MessagePrinter;
