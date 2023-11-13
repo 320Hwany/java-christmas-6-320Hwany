@@ -1,4 +1,4 @@
-package christmas.domain.discount;
+package christmas.service;
 
 import christmas.view.DecimalFormatter;
 
@@ -6,7 +6,7 @@ import static christmas.constant.MessageConstant.*;
 import static christmas.constant.PriceConstant.ZERO_DISCOUNT;
 import static christmas.constant.SymbolConstant.PRICE_UNIT_LINE_BREAK;
 
-public final class DiscountResult {
+public class DiscountResult {
 
     private final StringBuilder result = new StringBuilder();
 

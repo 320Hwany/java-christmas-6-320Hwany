@@ -1,8 +1,8 @@
 package christmas;
 
 import christmas.domain.date.ExpectedVisitDate;
-import christmas.service.DiscountManager;
-import christmas.domain.discount.DiscountPrice;
+import christmas.service.policy.DiscountPolicyManager;
+import christmas.service.DiscountPrice;
 import christmas.domain.order.Order;
 import christmas.view.MessagePrinter;
 import christmas.view.MessageReceiver;
@@ -11,13 +11,13 @@ public class EventManager {
 
     private final MessagePrinter messagePrinter;
     private final MessageReceiver messageReceiver;
-    private final DiscountManager discountManager;
+    private final DiscountPolicyManager discountPolicyManager;
 
     public EventManager(final MessagePrinter messagePrinter, final MessageReceiver messageReceiver,
-                        final DiscountManager discountManager) {
+                        final DiscountPolicyManager discountPolicyManager) {
         this.messagePrinter = messagePrinter;
         this.messageReceiver = messageReceiver;
-        this.discountManager = discountManager;
+        this.discountPolicyManager = discountPolicyManager;
     }
 
     public void manageEvent() {
@@ -41,7 +41,7 @@ public class EventManager {
 
     private DiscountPrice applyEvent(final Order order) {
         messagePrinter.printGiveaway(order);
-        return discountManager.calculateDiscountPrice(order);
+        return discountPolicyManager.calculateDiscountPrice(order);
     }
 
     private void processingEventResult(final DiscountPrice discountPrice, final Order order) {

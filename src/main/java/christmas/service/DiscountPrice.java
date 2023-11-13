@@ -1,4 +1,4 @@
-package christmas.domain.discount;
+package christmas.service;
 
 import christmas.view.DecimalFormatter;
 
@@ -12,7 +12,7 @@ import static christmas.constant.MessageConstant.NOTHING;
 import static christmas.constant.MessageConstant.NOTHING_LINE_BREAK;
 import static christmas.constant.PriceConstant.*;
 
-public final class DiscountPrice {
+public class DiscountPrice {
 
     private final List<Integer> discountPrices = new ArrayList<>();
 
@@ -22,7 +22,6 @@ public final class DiscountPrice {
         this.discountPrices.add(giveawayPrice);
     }
 
-    // validation
     private int applyGiveawayEvent(final int totalPrice) {
         if (totalPrice > GIVEAWAY_CONDITION.price) {
             return GIVEAWAY_BENEFIT.price;

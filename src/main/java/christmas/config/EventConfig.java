@@ -1,7 +1,7 @@
 package christmas.config;
 
 import christmas.EventManager;
-import christmas.service.DiscountManager;
+import christmas.service.policy.DiscountPolicyManager;
 import christmas.service.policy.*;
 import christmas.view.DecimalFormatter;
 import christmas.view.MessagePrinter;
@@ -36,7 +36,7 @@ public class EventConfig {
         return new DecimalFormatter();
     }
 
-    private static DiscountManager discountManager() {
+    private static DiscountPolicyManager discountManager() {
         ChristmasDiscountPolicy christmasDiscount = new ChristmasDiscountPolicy();
         WeekdayDiscountPolicy weekdayDiscount = new WeekdayDiscountPolicy();
         WeekendDiscountPolicy weekendDiscount = new WeekendDiscountPolicy();
@@ -48,6 +48,6 @@ public class EventConfig {
         discountPolicies.add(weekendDiscount);
         discountPolicies.add(specialDiscount);
 
-        return new DiscountManager(discountPolicies);
+        return new DiscountPolicyManager(discountPolicies);
     }
 }

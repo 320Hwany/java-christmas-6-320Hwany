@@ -1,18 +1,17 @@
-package christmas.service;
+package christmas.service.policy;
 
 import christmas.domain.order.Order;
-import christmas.domain.discount.DiscountPrice;
-import christmas.service.policy.DiscountPolicy;
+import christmas.service.DiscountPrice;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class DiscountManager {
+public class DiscountPolicyManager {
 
     private final List<DiscountPolicy> discountPolicies;
 
-    public DiscountManager(final List<DiscountPolicy> discountPolicies) {
+    public DiscountPolicyManager(final List<DiscountPolicy> discountPolicies) {
         this.discountPolicies = discountPolicies;
     }
 
