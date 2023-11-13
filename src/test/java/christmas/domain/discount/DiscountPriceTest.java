@@ -29,7 +29,7 @@ class DiscountPriceTest {
         discountPrices.add(specialDiscount);
 
         // when
-        DiscountPrice discountPrice = new DiscountPrice(totalPrice, discountPrices);
+        DiscountPrice discountPrice = DiscountPrice.of(totalPrice, discountPrices);
         int giveawayPrice = discountPrices.get(GIVEAWAY_INDEX.value);
 
         // then
@@ -49,7 +49,7 @@ class DiscountPriceTest {
         discountPrices.add(specialDiscount);
 
         // when
-        DiscountPrice discountPrice = new DiscountPrice(totalPrice, discountPrices);
+        DiscountPrice discountPrice = DiscountPrice.of(totalPrice, discountPrices);
         int giveawayPrice = discountPrices.get(GIVEAWAY_INDEX.value);
 
         // then
@@ -63,7 +63,7 @@ class DiscountPriceTest {
                               final int totalBenefitPrice3,  final int totalBenefitPrice4) {
         // given
         List<Integer> discountPrices = new ArrayList<>();
-        DiscountPrice discountPrice = new DiscountPrice(totalPrice, discountPrices);
+        DiscountPrice discountPrice = DiscountPrice.of(totalPrice, discountPrices);
 
         // when
         String eventBadgeText1 = discountPrice.createEventBadgeText(totalBenefitPrice1);
@@ -91,7 +91,7 @@ class DiscountPriceTest {
         discountPrices.add(weekendDiscount);
         discountPrices.add(specialDiscount);
 
-        DiscountPrice discountPrice = new DiscountPrice(totalPrice, discountPrices);
+        DiscountPrice discountPrice = DiscountPrice.of(totalPrice, discountPrices);
 
         // when
         int totalBenefitPrice = discountPrice.calculateTotalBenefitPrice();
@@ -115,7 +115,7 @@ class DiscountPriceTest {
         discountPrices.add(weekendDiscount);
         discountPrices.add(specialDiscount);
 
-        DiscountPrice discountPrice = new DiscountPrice(totalPrice, discountPrices);
+        DiscountPrice discountPrice = DiscountPrice.of(totalPrice, discountPrices);
 
         // when
         int totalDiscountPrice = discountPrice.calculateTotalDiscountPrice();

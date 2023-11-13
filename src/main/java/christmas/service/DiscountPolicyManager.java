@@ -23,6 +23,6 @@ public class DiscountPolicyManager {
         }
 
         int totalPrice = order.calculateTotalPrice();
-        return new DiscountPrice(totalPrice, discountPrices);
+        return DiscountPrice.of(totalPrice, discountPrices);
     }
 }

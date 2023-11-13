@@ -13,10 +13,14 @@ public final class DiscountPrice {
 
     private final List<Integer> discountPrices;
 
-    public DiscountPrice(final int totalPrice, final List<Integer> discountPrices) {
+    private DiscountPrice(final int totalPrice, final List<Integer> discountPrices) {
         int giveawayPrice = applyGiveawayEvent(totalPrice);
         this.discountPrices = discountPrices;
         this.discountPrices.add(giveawayPrice);
+    }
+
+    public static DiscountPrice of(final int totalPrice, final List<Integer> discountPrices) {
+        return new DiscountPrice(totalPrice, discountPrices);
     }
 
     private int applyGiveawayEvent(final int totalPrice) {
