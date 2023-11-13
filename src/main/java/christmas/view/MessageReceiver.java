@@ -9,6 +9,7 @@ import christmas.view.valid.ViewValidator;
 import java.util.Arrays;
 import java.util.List;
 
+import static christmas.constant.ExceptionConstant.EXPECTED_DATE_EXCEPTION;
 import static christmas.constant.MessageConstant.*;
 import static christmas.constant.SymbolConstant.*;
 
@@ -26,7 +27,7 @@ public class MessageReceiver {
         do {
             String inputText = Console.readLine();
             try {
-                int inputNumber = viewValidator.parseIntExpectedDate(inputText);
+                int inputNumber = viewValidator.parseInt(inputText, EXPECTED_DATE_EXCEPTION.message);
                 return ExpectedVisitDate.from(inputNumber);
             } catch (IllegalArgumentException e) {
                 viewValidator.printExceptionMessage(e);

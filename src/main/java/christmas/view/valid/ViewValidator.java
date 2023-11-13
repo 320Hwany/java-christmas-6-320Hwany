@@ -15,19 +15,11 @@ import static christmas.constant.SymbolConstant.*;
 
 public class ViewValidator {
 
-    public int parseIntExpectedDate(final String inputText) {
+    public int parseInt(final String inputText, final String exceptionMessage) {
         try {
             return Integer.parseInt(inputText);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(EXPECTED_DATE_EXCEPTION.message);
-        }
-    }
-
-    public int parseIntMenu(final String inputText) {
-        try {
-            return Integer.parseInt(inputText);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_ORDER_EXCEPTION.message);
+            throw new IllegalArgumentException(exceptionMessage);
         }
     }
 
@@ -58,7 +50,7 @@ public class ViewValidator {
     private Menu createMenu(final List<String> menuInfo) {
         String menuName = menuInfo.get(MENU_NAME_INDEX.value);
         String quantityText = menuInfo.get(QUANTITY_INDEX.value);
-        int quantity = parseIntMenu(quantityText);
+        int quantity = parseInt(quantityText, INVALID_ORDER_EXCEPTION.message);
         return Menu.createMenu(menuName, quantity);
     }
 }
