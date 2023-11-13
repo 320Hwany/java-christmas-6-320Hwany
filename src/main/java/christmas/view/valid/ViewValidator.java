@@ -48,7 +48,7 @@ public class ViewValidator {
             menus.add(menu);
         }
 
-        return new Menus(menus);
+        return Menus.from(menus);
     }
 
     private boolean isIncorrectForm(final List<String> menuInfo) {

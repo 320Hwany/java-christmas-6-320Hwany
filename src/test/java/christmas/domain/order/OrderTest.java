@@ -23,7 +23,7 @@ class OrderTest {
         String menuName2 = "초코케이크";
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
         int day = 10;
@@ -43,7 +43,7 @@ class OrderTest {
         // given
         String menuName = "양송이수프";
         Menu menu1 = Menu.createMenu(menuName, 3);
-        Order order = new Order(new Menus(List.of(menu1)), ExpectedVisitDate.from(10));
+        Order order = new Order(Menus.from(List.of(menu1)), ExpectedVisitDate.from(10));
 
         int totalPrice1 = 120000;
         int totalPrice2 = 119999;
@@ -65,7 +65,7 @@ class OrderTest {
         String menuName2 = "초코케이크";
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
         int christmasDay = 25;
@@ -87,7 +87,7 @@ class OrderTest {
         String menuName2 = "초코케이크";
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
         int weekday = 3;
@@ -109,7 +109,7 @@ class OrderTest {
         String menuName2 = "초코케이크";
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
         int weekend = 2;
@@ -132,7 +132,7 @@ class OrderTest {
         String menuName2 = "초코케이크";
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(specialDay);
@@ -154,7 +154,7 @@ class OrderTest {
         String menuName2 = "초코케이크";
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(specialDay);

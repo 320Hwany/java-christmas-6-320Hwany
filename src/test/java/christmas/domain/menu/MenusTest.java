@@ -24,7 +24,7 @@ class MenusTest {
         Menu menu2 = Menu.createMenu(menuName2, 11);
 
         // expected
-        assertThatThrownBy(() -> new Menus(List.of(menu1, menu2)))
+        assertThatThrownBy(() -> Menus.from(List.of(menu1, menu2)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -38,7 +38,7 @@ class MenusTest {
         Menu menu2 = Menu.createMenu(menuName2, 10);
 
         // expected
-        assertThatThrownBy(() -> new Menus(List.of(menu1, menu2)))
+        assertThatThrownBy(() -> Menus.from(List.of(menu1, menu2)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -52,7 +52,7 @@ class MenusTest {
         Menu menu2 = Menu.createMenu(menuName2, 10);
 
         // expected
-        assertThatThrownBy(() -> new Menus(List.of(menu1, menu2)))
+        assertThatThrownBy(() -> Menus.from(List.of(menu1, menu2)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -66,7 +66,7 @@ class MenusTest {
         Menu menu2 = Menu.createMenu(menuName2, 10);
 
         // when
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // then
         assertThat(menus).isNotNull();
@@ -80,7 +80,7 @@ class MenusTest {
         String menuName2 = "초코케이크";
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // when
         int totalPrice = menus.calculateTotalPrice();
@@ -97,7 +97,7 @@ class MenusTest {
         String menuName2 = "초코케이크";
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
         int weekday = 3;
@@ -118,7 +118,7 @@ class MenusTest {
         String menuName2 = "초코케이크";
         Menu menu1 = Menu.createMenu(menuName1, 5);
         Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = new Menus(List.of(menu1, menu2));
+        Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
         int weekend = 2;

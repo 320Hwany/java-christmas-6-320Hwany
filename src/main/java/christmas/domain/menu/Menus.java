@@ -13,11 +13,15 @@ public final class Menus {
 
     private final List<Menu> menus;
 
-    public Menus(final List<Menu> menus) {
+    private Menus(final List<Menu> menus) {
         validateMenusQuantity(menus);
         validateDuplication(menus);
         validateOnlyBeverage(menus);
         this.menus = menus;
+    }
+
+    public static Menus from(final List<Menu> menus) {
+        return new Menus(menus);
     }
 
     // validation
