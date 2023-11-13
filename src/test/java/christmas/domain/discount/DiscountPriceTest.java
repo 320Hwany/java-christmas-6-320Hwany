@@ -40,7 +40,7 @@ class DiscountPriceTest {
     @ParameterizedTest
     @CsvSource({"119999, -1000, 0, -2023, -1000"})
     void notApplyGiveawayEvent(final int totalPrice, final int christmasDiscount, final int weekdayDiscount,
-                            final int weekendDiscount, final int specialDiscount) {
+                               final int weekendDiscount, final int specialDiscount) {
         // given
         List<Integer> discountPrices = new ArrayList<>();
         discountPrices.add(christmasDiscount);
@@ -76,5 +76,29 @@ class DiscountPriceTest {
         assertThat(eventBadgeText2).isEqualTo(TREE.badge);
         assertThat(eventBadgeText3).isEqualTo(STAR.badge);
         assertThat(eventBadgeText4).isEqualTo(NOTHING.message);
+    }
+
+    @DisplayName("증정 이벤트를 포함한 총 혜택 금액을 계산한다.")
+    @ParameterizedTest
+    @CsvSource({"120000, -1000, 0, -2023, -1000"})
+    void calculateTotalBenefitPrice(final int totalPrice, final int christmasDiscount,
+                                    final int weekdayDiscount, final int weekendDiscount,
+                                    final int specialDiscount) {
+        // given
+        List<Integer> discountPrices = new ArrayList<>();
+        discountPrices.add(christmasDiscount);
+        discountPrices.add(weekdayDiscount);
+        discountPrices.add(weekendDiscount);
+        discountPrices.add(specialDiscount);
+
+        DiscountPrice discountPrice = new DiscountPrice(totalPrice, discountPrices);
+
+        // when
+        int totalBenefitPrice = discountPrice.calculateTotalBenefitPrice();
+
+
+        // then
+        int expectedPrice = christmasDiscount + weekdayDiscount + weekendDiscount + specialDiscount - 25000;
+        assertThat(totalBenefitPrice).isEqualTo(expectedPrice);
     }
 }
