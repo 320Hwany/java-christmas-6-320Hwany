@@ -6,6 +6,7 @@ import christmas.domain.menu.Menus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -16,18 +17,18 @@ import static org.assertj.core.api.Assertions.*;
 class OrderTest {
 
     @DisplayName("주문 메뉴들의 할인 전 총 금액을 계산한다.")
-    @Test
-    void calculateTotalPrice() {
+    @ParameterizedTest
+    @CsvSource({"양송이수프, 초코케이크, 5, 3, 10"})
+    void calculateTotalPrice(final String menuName1, final String menuName2,
+                             final int validQuantity1, final int validQuantity2,
+                             final int validDay) {
         // given 1
-        String menuName1 = "양송이수프";
-        String menuName2 = "초코케이크";
-        Menu menu1 = Menu.createMenu(menuName1, 5);
-        Menu menu2 = Menu.createMenu(menuName2, 3);
+        Menu menu1 = Menu.createMenu(menuName1, validQuantity1);
+        Menu menu2 = Menu.createMenu(menuName2, validQuantity2);
         Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
-        int day = 10;
-        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(day);
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(validDay);
         Order order = Order.of(menus, expectedVisitDate);
 
         // when
@@ -38,15 +39,13 @@ class OrderTest {
     }
 
     @DisplayName("12만원을 기준으로 증정 이벤트 적용 대상인지 확인한다.")
-    @Test
-    void checkGiveaway() {
+    @ParameterizedTest
+    @CsvSource({"양송이수프, 3, 10, 120000, 119999"})
+    void checkGiveaway(final String menuName, final int validQuantity, final int validDay,
+                       final int totalPrice1, final int totalPrice2) {
         // given
-        String menuName = "양송이수프";
-        Menu menu1 = Menu.createMenu(menuName, 3);
-        Order order = Order.of(Menus.from(List.of(menu1)), ExpectedVisitDate.from(10));
-
-        int totalPrice1 = 120000;
-        int totalPrice2 = 119999;
+        Menu menu1 = Menu.createMenu(menuName, validQuantity);
+        Order order = Order.of(Menus.from(List.of(menu1)), ExpectedVisitDate.from(validDay));
 
         // when
         String giveaway1 = order.calculateGiveaway(totalPrice1);
@@ -58,17 +57,17 @@ class OrderTest {
     }
 
     @DisplayName("주문에서 크리스마스 디데이 할인을 적용하고 할인 금액을 계산한다.")
-    @Test
-    void calculateTotalChristmasDiscount() {
+    @ParameterizedTest
+    @CsvSource({"양송이수프, 초코케이크, 5, 3, 25"})
+    void calculateTotalChristmasDiscount(final String menuName1, final String menuName2,
+                                         final int validQuantity1, final int validQuantity2,
+                                         final int christmasDay) {
         // given 1
-        String menuName1 = "양송이수프";
-        String menuName2 = "초코케이크";
-        Menu menu1 = Menu.createMenu(menuName1, 5);
-        Menu menu2 = Menu.createMenu(menuName2, 3);
+        Menu menu1 = Menu.createMenu(menuName1, validQuantity1);
+        Menu menu2 = Menu.createMenu(menuName2, validQuantity2);
         Menus menus = Menus.from(List.of(menu1, menu2));
 
         // given 2
-        int christmasDay = 25;
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(christmasDay);
         Order order = Order.of(menus, expectedVisitDate);
 
@@ -80,17 +79,17 @@ class OrderTest {
     }
 
     @DisplayName("주문에서 평일 할인을 적용하고 할인 값을 반환한다.")
-    @Test
-    void calculateTotalWeekdayDiscount() {
+    @ParameterizedTest
+    @CsvSource({"티본스테이크, 초코케이크, 5, 3, 3"})
+    void calculateTotalWeekdayDiscount(final String mainMenuName, final String dessertMenuName,
+                                       final int validQuantity1, final int validQuantity2,
+                                       final int weekday) {
         // given 1
-        String menuName1 = "티본스테이크";
-        String menuName2 = "초코케이크";
-        Menu menu1 = Menu.createMenu(menuName1, 5);
-        Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = Menus.from(List.of(menu1, menu2));
+        Menu mainMenu = Menu.createMenu(mainMenuName, validQuantity1);
+        Menu dessertMenu = Menu.createMenu(dessertMenuName, validQuantity2);
+        Menus menus = Menus.from(List.of(mainMenu, dessertMenu));
 
         // given 2
-        int weekday = 3;
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekday);
         Order order = Order.of(menus, expectedVisitDate);
 
@@ -102,17 +101,17 @@ class OrderTest {
     }
 
     @DisplayName("주문에서 주말 할인을 적용하고 할인 값을 반환한다.")
-    @Test
-    void calculateWeekendDiscount() {
+    @ParameterizedTest
+    @CsvSource({"티본스테이크, 초코케이크, 5, 3, 2"})
+    void calculateWeekendDiscount(final String mainMenuName, final String dessertMenuName,
+                                  final int validQuantity1, final int validQuantity2,
+                                  final int weekend) {
         // given 1
-        String menuName1 = "티본스테이크";
-        String menuName2 = "초코케이크";
-        Menu menu1 = Menu.createMenu(menuName1, 5);
-        Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = Menus.from(List.of(menu1, menu2));
+        Menu mainMenu = Menu.createMenu(mainMenuName, validQuantity1);
+        Menu dessertMenu = Menu.createMenu(dessertMenuName, validQuantity2);
+        Menus menus = Menus.from(List.of(mainMenu, dessertMenu));
 
         // given 2
-        int weekend = 2;
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(weekend);
         Order order = Order.of(menus, expectedVisitDate);
 
@@ -128,11 +127,11 @@ class OrderTest {
     @ValueSource(ints = {3, 10, 17, 24, 25, 31})
     void calculateSpecialDayDiscount(final int specialDay) {
         // given 1
-        String menuName1 = "티본스테이크";
-        String menuName2 = "초코케이크";
-        Menu menu1 = Menu.createMenu(menuName1, 5);
-        Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = Menus.from(List.of(menu1, menu2));
+        String mainMenuName = "티본스테이크";
+        String dessertMenuName = "초코케이크";
+        Menu mainMenu = Menu.createMenu(mainMenuName, 5);
+        Menu dessertMenu = Menu.createMenu(dessertMenuName, 3);
+        Menus menus = Menus.from(List.of(mainMenu, dessertMenu));
 
         // given 2
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(specialDay);
@@ -150,11 +149,11 @@ class OrderTest {
     @ValueSource(ints = {2, 11, 16, 23, 26, 30})
     void calculateSpecialDayDiscountNotApply(final int specialDay) {
         // given 1
-        String menuName1 = "티본스테이크";
-        String menuName2 = "초코케이크";
-        Menu menu1 = Menu.createMenu(menuName1, 5);
-        Menu menu2 = Menu.createMenu(menuName2, 3);
-        Menus menus = Menus.from(List.of(menu1, menu2));
+        String mainMenuName = "티본스테이크";
+        String dessertMenuName = "초코케이크";
+        Menu mainMenu = Menu.createMenu(mainMenuName, 5);
+        Menu dessertMenu = Menu.createMenu(dessertMenuName, 3);
+        Menus menus = Menus.from(List.of(mainMenu, dessertMenu));
 
         // given 2
         ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(specialDay);
