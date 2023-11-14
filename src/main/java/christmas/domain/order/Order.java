@@ -51,8 +51,7 @@ public final class Order {
         return expectedVisitDate.calculateSpecialDayDiscount();
     }
 
-    public boolean isApplyEvent() {
-        int totalPrice = menus.calculateTotalPrice();
+    public boolean isApplyEvent(final int totalPrice) {
         return totalPrice >= EVENT_APPLY_CONDITION.price;
     }
 

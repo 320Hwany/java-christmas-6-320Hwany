@@ -23,10 +23,10 @@ public class DiscountPolicyManager {
         int totalPrice = order.calculateTotalPrice();
         List<Integer> discountPrices = new ArrayList<>();
 
-        if (!order.isApplyEvent()) {
+        if (!order.isApplyEvent(totalPrice)) {
             initializeZeroDiscountPrices(discountPrices);
         }
-        if (order.isApplyEvent()) {
+        if (order.isApplyEvent(totalPrice)) {
             calculateDiscountPrices(order, discountPrices);
         }
 
