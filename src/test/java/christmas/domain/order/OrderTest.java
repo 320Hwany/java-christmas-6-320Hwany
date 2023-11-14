@@ -165,4 +165,30 @@ class OrderTest {
         // then
         assertThat(totalSpecialDayDiscount).isEqualTo(0);
     }
+
+    @DisplayName("총 주문 금액에서 이벤트 적용 대상인지 확인한다.")
+    @ParameterizedTest
+    @CsvSource({"티본스테이크, 초코케이크, 5, 3, 2, 9999, 10000"})
+    void isApplyEvent(final String mainMenuName, final String dessertMenuName,
+                      final int validQuantity1, final int validQuantity2,
+                      final int day, final int notApplyEventTotalPrice,
+                      final int applyEventTotalPrice) {
+
+        // given 1
+        Menu mainMenu = Menu.createMenu(mainMenuName, validQuantity1);
+        Menu dessertMenu = Menu.createMenu(dessertMenuName, validQuantity2);
+        Menus menus = Menus.from(List.of(mainMenu, dessertMenu));
+
+        // given 2
+        ExpectedVisitDate expectedVisitDate = ExpectedVisitDate.from(day);
+        Order order = Order.of(menus, expectedVisitDate);
+
+        // when
+        boolean isNotApplyEvent = order.isApplyEvent(notApplyEventTotalPrice);
+        boolean isApplyEvent = order.isApplyEvent(applyEventTotalPrice);
+
+        // then
+        assertThat(isNotApplyEvent).isFalse();
+        assertThat(isApplyEvent).isTrue();
+    }
 }
