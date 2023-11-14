@@ -20,6 +20,12 @@ public class DiscountPolicyManager {
 
     public DiscountPrice calculateDiscountPrice(final Order order) {
         int totalPrice = order.calculateTotalPrice();
+        List<Integer> discountPrices = calculateDiscountPrices(order, totalPrice);
+
+        return DiscountPrice.of(totalPrice, discountPrices);
+    }
+
+    private List<Integer> calculateDiscountPrices(final Order order, final int totalPrice) {
         List<Integer> discountPrices = new ArrayList<>();
 
         if (!order.isApplyEvent(totalPrice)) {
@@ -29,7 +35,7 @@ public class DiscountPolicyManager {
             calculateDiscountPrices(order, discountPrices);
         }
 
-        return DiscountPrice.of(totalPrice, discountPrices);
+        return discountPrices;
     }
 
     private void calculateDiscountPrices(final Order order, final List<Integer> discountPrices) {
