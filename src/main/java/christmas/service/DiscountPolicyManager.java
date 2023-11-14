@@ -1,6 +1,5 @@
 package christmas.service;
 
-import christmas.constant.PriceConstant;
 import christmas.domain.order.Order;
 import christmas.domain.discount.DiscountPrice;
 
@@ -40,7 +39,7 @@ public class DiscountPolicyManager {
         }
     }
 
-    private void initializeZeroDiscountPrices(List<Integer> discountPrices) {
+    private void initializeZeroDiscountPrices(final List<Integer> discountPrices) {
         for (int i = 0; i < DISCOUNT_TYPE_COUNT.value; i++) {
             discountPrices.add(ZERO_DISCOUNT.price);
         }
