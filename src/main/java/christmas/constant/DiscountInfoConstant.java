@@ -6,7 +6,8 @@ public enum DiscountInfoConstant {
     WEEKDAY_DISCOUNT_INDEX(1),
     WEEKEND_DISCOUNT_INDEX(2),
     SPECIAL_DISCOUNT_INDEX(3),
-    GIVEAWAY_INDEX(4);
+    GIVEAWAY_INDEX(4),
+    DISCOUNT_TYPE_COUNT(4);
 
     public final int value;
 

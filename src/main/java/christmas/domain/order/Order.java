@@ -51,6 +51,11 @@ public final class Order {
         return expectedVisitDate.calculateSpecialDayDiscount();
     }
 
+    public boolean isApplyEvent() {
+        int totalPrice = menus.calculateTotalPrice();
+        return totalPrice >= EVENT_APPLY_CONDITION.price;
+    }
+
     public String createPreviewFormattedMessage() {
         return expectedVisitDate.createPreviewFormattedMessage();
     }
